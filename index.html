@@ -1,226 +1,196 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homey Cafe — Bundle Sets</title>
-  <meta name="description" content="Homey Cafe — frozen meal bundle sets.">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .bundles-page {
-      padding: 55px 0 80px;
-    }
-    .bundles-intro {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 45px;
-    }
-    .bundles-intro h1 {
-      margin: 8px 0 15px;
-    }
-    .bundles-intro p {
-      color: var(--muted);
-    }
-    .bundle-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    .bundle-card {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    .bundle-images {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      height: 180px;
-    }
-    .bundle-images img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .bundle-info {
-      padding: 22px;
-    }
-    .bundle-info h2 {
-      margin: 0 0 8px;
-      font-family: "Playfair Display", serif;
-      font-size: 24px;
-    }
-    .bundle-info p {
-      margin: 0 0 18px;
-      color: var(--muted);
-    }
-    .bundle-price {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--brown);
-      margin-bottom: 16px;
-    }
-    .bundle-btn {
-      width: 100%;
-      border: 0;
-      cursor: pointer;
-      background: var(--ink);
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 15px;
-    }
-    .bundle-btn:hover {
-      opacity: 0.9;
-    }
-    @media (max-width: 900px) {
-      .bundle-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 600px) {
-      .bundle-grid {
-        grid-template-columns: 1fr;
-      }
-      .bundle-images,
-      .bundle-images img {
-        height: 200px;
-      }
-    }
-  </style>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+  <title>Homey Cafe — Restaurant in your fridge</title>
+
+<meta
+name="description"
+content="Homey Cafe — frozen meals ready in your fridge."
+
+>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 <body>
 
   <!-- =====================================================
        HEADER
        ===================================================== -->
+
   <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html">
-        <span>Homey</span>
-        <small>cafe</small>
-      </a>
-      <a class="cart-link" href="checkout.html">
-        Cart <b id="cart-count">0</b>
-      </a>
-    </div>
+
+```
+<div class="container nav">
+
+  <a
+    class="brand"
+    href="index.html"
+  >
+    <span>Homey</span>
+    <small>cafe</small>
+  </a>
+
+  <a
+    class="cart-link"
+    href="checkout.html"
+  >
+    Cart
+    <b id="cart-count">0</b>
+  </a>
+
+</div>
+```
+
   </header>
 
   <!-- =====================================================
        MAIN
        ===================================================== -->
+
   <main>
-    <section class="bundles-page">
-      <div class="container">
 
-        <div class="bundles-intro">
-          <p class="eyebrow">BUNDLE SETS</p>
-          <h1>Stock your freezer.</h1>
-          <p>
-            Each bundle contains three complete meals.
-            Choose your favourites and keep them ready
-            whenever you need a proper meal.
-          </p>
-        </div>
+```
+<!-- HERO -->
 
-        <div class="bundle-grid">
+<section class="hero container">
 
-          <!-- BUNDLE 1 -->
-          <article class="bundle-card">
-            <div class="bundle-images">
-              <img src="images/spicy.jpg" alt="Nasi Lemak">
-              <img src="images/dakgalbi.jpg" alt="Dakgalbi">
-              <img src="images/japanese.png" alt="Japanese Curry">
-            </div>
-            <div class="bundle-info">
-              <h2>Uncle's Choice</h2>
-              <p>Spicy Nasi Lemak, Dakgalbi Bento and Japanese Curry.</p>
-              <div class="bundle-price">RM60</div>
-              <button class="bundle-btn" onclick="addBundleToCart('bundle-1')">Add Bundle to Cart</button>
-            </div>
-          </article>
+  <img
+    class="hero-logo"
+    src="homey.png"
+    alt="Homey Cafe"
+  >
 
-          <!-- BUNDLE 2 -->
-          <article class="bundle-card">
-            <div class="bundle-images">
-              <img src="images/dakgalbi.jpg" alt="Dakgalbi">
-              <img src="images/kimchi-chicken.png" alt="Kimchi Chicken">
-              <img src="images/spicy.jpg" alt="Nasi Lemak">
-            </div>
-            <div class="bundle-info">
-              <h2>Korean Favourites</h2>
-              <p>Dakgalbi Bento, Kimchi Chicken and Spicy Nasi Lemak.</p>
-              <div class="bundle-price">RM60</div>
-              <button class="bundle-btn" onclick="addBundleToCart('bundle-2')">Add Bundle to Cart</button>
-            </div>
-          </article>
+  <p class="eyebrow">
+    RESTAURANT IN YOUR FRIDGE
+  </p>
 
-          <!-- BUNDLE 3 -->
-          <article class="bundle-card">
-            <div class="bundle-images">
-              <img src="images/japanese.png" alt="Japanese Curry">
-              <img src="images/paprika-chicken.jpg" alt="Paprika Chicken">
-              <img src="images/spicy.jpg" alt="Nasi Lemak">
-            </div>
-            <div class="bundle-info">
-              <h2>Comfort Food</h2>
-              <p>Japanese Curry, Paprika Chicken and Spicy Nasi Lemak.</p>
-              <div class="bundle-price">RM60</div>
-              <button class="bundle-btn" onclick="addBundleToCart('bundle-3')">Add Bundle to Cart</button>
-            </div>
-          </article>
+  <h1>
+    Home-cooked comfort,
+    <br>
+    <em>ready when you are.</em>
+  </h1>
 
-          <!-- BUNDLE 4 -->
-          <article class="bundle-card">
-            <div class="bundle-images">
-              <img src="images/spicy.jpg" alt="Nasi Lemak">
-              <img src="images/paprika-chicken.jpg" alt="Paprika Chicken">
-              <img src="images/kimchi-chicken.png" alt="Kimchi Chicken">
-            </div>
-            <div class="bundle-info">
-              <h2>Chicken Lovers</h2>
-              <p>Spicy Nasi Lemak, Paprika Chicken and Kimchi Chicken.</p>
-              <div class="bundle-price">RM60</div>
-              <button class="bundle-btn" onclick="addBundleToCart('bundle-4')">Add Bundle to Cart</button>
-            </div>
-          </article>
+  <p>
+    Frozen meal sets made with care.
+    Keep them in your freezer, heat them
+    when you need them, and enjoy a proper
+    meal without the restaurant wait.
+  </p>
 
-          <!-- BUNDLE 5 -->
-          <article class="bundle-card">
-            <div class="bundle-images">
-              <img src="images/tuna.jpeg" alt="Tuna Corn">
-              <img src="images/japanese.png" alt="Japanese Curry">
-              <img src="images/dakgalbi.jpg" alt="Dakgalbi">
-            </div>
-            <div class="bundle-info">
-              <h2>Mixed Favourites</h2>
-              <p>Tuna Corn, Japanese Curry and Dakgalbi Bento.</p>
-              <div class="bundle-price">RM60</div>
-              <button class="bundle-btn" onclick="addBundleToCart('bundle-5')">Add Bundle to Cart</button>
-            </div>
-          </article>
+  <div class="hero-buttons">
 
-        </div> <!-- End of bundle-grid -->
-      </div> <!-- End of container -->
-    </section> <!-- End of bundles-page -->
+    <a
+      class="primary-btn"
+      href="#menu"
+    >
+      View Menu
+    </a>
+
+    <a
+      class="secondary-btn"
+      href="bundles.html"
+    >
+      Bundle Sets
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section
+  id="menu"
+  class="menu-section"
+>
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+
+        <p class="eyebrow">
+          OUR MENU
+        </p>
+
+        <h2>
+          Choose your meal
+        </h2>
+
+      </div>
+
+      <p>
+        Minimum order of one bundle set is
+        required before adding individual
+        menu meals below.
+      </p>
+
+    </div>
+
+    <div
+      id="menu-grid"
+      class="menu-grid"
+    ></div>
+
+  </div>
+
+</section>
+```
+
   </main>
 
   <!-- =====================================================
-       FOOTER (From your previous message layout)
+       FOOTER
        ===================================================== -->
+
   <footer>
-    <div class="container footer-inner">
-      <div>
-        <strong>Homey cafe</strong>
-        <span>Restaurant in your fridge.</span>
-      </div>
-      <a class="secondary-btn" href="checkout.html">Go to checkout</a>
-    </div>
+
+```
+<div class="container footer-inner">
+
+  <div>
+
+    <strong>
+      Homey cafe
+    </strong>
+
+    <span>
+      Restaurant in your fridge.
+    </span>
+
+  </div>
+
+  <a
+    class="secondary-btn"
+    href="checkout.html"
+  >
+    Go to checkout
+  </a>
+
+</div>
+```
+
   </footer>
 
   <script src="script.js"></script>
+
 </body>
 </html>

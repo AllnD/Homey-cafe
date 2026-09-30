@@ -102,7 +102,9 @@ const BUNDLES = [
 
   {
     id: "bundle-1",
+    number: "01",
     name: "Uncle's Choice",
+    description: "Three comforting favourites chosen for a satisfying home-style meal.",
     meals: [
       "spicy-bento",
       "dakgalbi-bento",
@@ -113,7 +115,9 @@ const BUNDLES = [
 
   {
     id: "bundle-2",
+    number: "02",
     name: "Korean Favourites",
+    description: "A selection of Korean-inspired meals with plenty of flavour.",
     meals: [
       "dakgalbi-bento",
       "kimchi-chicken",
@@ -124,7 +128,9 @@ const BUNDLES = [
 
   {
     id: "bundle-3",
+    number: "03",
     name: "Comfort Food",
+    description: "Classic comfort meals for those days when you want something hearty.",
     meals: [
       "japanese-curry",
       "paprika-chicken",
@@ -135,7 +141,9 @@ const BUNDLES = [
 
   {
     id: "bundle-4",
+    number: "04",
     name: "Chicken Lovers",
+    description: "Three chicken-based favourites packed into one convenient bundle.",
     meals: [
       "spicy-bento",
       "paprika-chicken",
@@ -146,7 +154,9 @@ const BUNDLES = [
 
   {
     id: "bundle-5",
+    number: "05",
     name: "Mixed Favourites",
+    description: "A little bit of everything for those who like variety.",
     meals: [
       "tuna-corn",
       "japanese-curry",
@@ -157,7 +167,9 @@ const BUNDLES = [
 
   {
     id: "bundle-6",
+    number: "06",
     name: "Homey Selection",
+    description: "A selection of Homey Cafe favourites for your freezer.",
     meals: [
       "tuna-corn",
       "kimchi-chicken",

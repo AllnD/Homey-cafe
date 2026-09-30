@@ -1,18 +1,102 @@
 /* Homey Cafe: edit PRODUCTS and WHATSAPP_NUMBER. Put your QR at assets/tng-qr.png. */
-const WHATSAPP_NUMBER="60129313052"; // e.g. "60123456789"
- const PRODUCTS = [
-  { id: "spicy-bento", name: "Uncle's Choice Bento", description: "Chicken curry, omelette egg,sambal prawns and vegetables.", price: 30, image: "images/spicy.jpg" },
-  { id: "dakgalbi-bento", name: "Dakgalbi Bento", description: "Korean-style chicken with stir-fried vegetables.", price: 20, image: "images/dakgalbi.jpg" },
-  { id: "japanese-curry", name: "Japanese Curry Bento", description: "Japanese curry chicken with potato and carrot.", price: 25, image: "images/japanese.png" },
-  { id: "paprika-chicken", name: "Hungarian Paprika Chicken", description: "Roasted chicken with paprika vegetable spaghetti.", price: 22, image: "images/paprika-chicken.jpg" },
-  { id: "tuna-corn", name: "Tuna Corn Bento", description: "Tuna, sweet corn, egg roll and broccoli.", price: 21, image: "images/tuna.jpeg" },
-  { id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
-{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
-{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
-{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
-{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
-{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
-{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
+const WHATSAPP_NUMBER = "60129313052";
+
+const PRODUCTS = [
+  {
+    id: "spicy-bento",
+    name: "Uncle's Choice Bento",
+    description: "Chicken curry, omelette egg, sambal prawns and vegetables.",
+    price: 30,
+    image: "images/spicy.jpg"
+  },
+
+  {
+    id: "dakgalbi-bento",
+    name: "Dakgalbi Bento",
+    description: "Korean-style chicken with stir-fried vegetables.",
+    price: 20,
+    image: "images/dakgalbi.jpg"
+  },
+
+  {
+    id: "japanese-curry",
+    name: "Japanese Curry Bento",
+    description: "Japanese curry chicken with potato and carrot.",
+    price: 25,
+    image: "images/japanese.png"
+  },
+
+  {
+    id: "paprika-chicken",
+    name: "Hungarian Paprika Chicken",
+    description: "Roasted chicken with paprika vegetable spaghetti.",
+    price: 22,
+    image: "images/paprika-chicken.jpg"
+  },
+
+  {
+    id: "tuna-corn",
+    name: "Tuna Corn Bento",
+    description: "Tuna, sweet corn, egg roll and broccoli.",
+    price: 21,
+    image: "images/tuna.jpeg"
+  },
+
+  {
+    id: "kimchi-chicken",
+    name: "Kimchi Chicken Bento",
+    description: "Savory chicken with cooked kimchi and vegetables.",
+    price: 20,
+    image: "images/kimchi-chicken.png"
+  },
+
+  {
+    id: "kimchi-chicken-2",
+    name: "Kimchi Chicken Bento 2",
+    description: "Savory chicken with cooked kimchi and vegetables.",
+    price: 20,
+    image: "images/kimchi-chicken.png"
+  },
+
+  {
+    id: "kimchi-chicken-3",
+    name: "Kimchi Chicken Bento 3",
+    description: "Savory chicken with cooked kimchi and vegetables.",
+    price: 20,
+    image: "images/kimchi-chicken.png"
+  },
+
+  {
+    id: "kimchi-chicken-4",
+    name: "Kimchi Chicken Bento 4",
+    description: "Savory chicken with cooked kimchi and vegetables.",
+    price: 20,
+    image: "images/kimchi-chicken.png"
+  },
+
+  {
+    id: "kimchi-chicken-5",
+    name: "Kimchi Chicken Bento 5",
+    description: "Savory chicken with cooked kimchi and vegetables.",
+    price: 20,
+    image: "images/kimchi-chicken.png"
+  },
+
+  {
+    id: "kimchi-chicken-6",
+    name: "Kimchi Chicken Bento 6",
+    description: "Savory chicken with cooked kimchi and vegetables.",
+    price: 20,
+    image: "images/kimchi-chicken.png"
+  },
+
+  {
+    id: "kimchi-chicken-7",
+    name: "Kimchi Chicken Bento 7",
+    description: "Savory chicken with cooked kimchi and vegetables.",
+    price: 20,
+    image: "images/kimchi-chicken.png"
+  }
 ];
 const getCart=()=>{try{return JSON.parse(localStorage.getItem("homeyCart"))||{}}catch{return{}}};
 function saveCart(c){localStorage.setItem("homeyCart",JSON.stringify(c));updateCount()}

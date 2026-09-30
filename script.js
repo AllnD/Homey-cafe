@@ -1,7 +1,17 @@
-/* Homey Cafe: edit PRODUCTS and WHATSAPP_NUMBER. Put your QR at assets/tng-qr.png. */
+/* =========================================================
+   HOMEY CAFE
+   Main JavaScript
+   ========================================================= */
+
 const WHATSAPP_NUMBER = "60129313052";
 
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
 const PRODUCTS = [
+
   {
     id: "nasi-lemak",
     name: "Nasi Lemak with Malaysian Curry",
@@ -97,7 +107,14 @@ const PRODUCTS = [
     price: 20,
     image: "images/kimchi-chicken.png"
   }
+
 ];
+
+
+/* =========================================================
+   BUNDLES
+   ========================================================= */
+
 const BUNDLES = [
 
   {
@@ -106,7 +123,7 @@ const BUNDLES = [
     name: "Uncle's Choice",
     description: "Three comforting favourites chosen for a satisfying home-style meal.",
     meals: [
-      "spicy-bento",
+      "nasi-lemak",
       "dakgalbi-bento",
       "japanese-curry"
     ],
@@ -121,7 +138,7 @@ const BUNDLES = [
     meals: [
       "dakgalbi-bento",
       "kimchi-chicken",
-      "spicy-bento"
+      "nasi-lemak"
     ],
     price: 60
   },
@@ -134,7 +151,7 @@ const BUNDLES = [
     meals: [
       "japanese-curry",
       "paprika-chicken",
-      "spicy-bento"
+      "nasi-lemak"
     ],
     price: 60
   },
@@ -145,7 +162,7 @@ const BUNDLES = [
     name: "Chicken Lovers",
     description: "Three chicken-based favourites packed into one convenient bundle.",
     meals: [
-      "spicy-bento",
+      "nasi-lemak",
       "paprika-chicken",
       "kimchi-chicken"
     ],
@@ -179,108 +196,1114 @@ const BUNDLES = [
   }
 
 ];
-const getCart=()=>{try{return JSON.parse(localStorage.getItem("homeyCart"))||{}}catch{return{}}};
-function saveCart(c){localStorage.setItem("homeyCart",JSON.stringify(c));updateCount()}
-function money(n){return `RM${n.toFixed(2)}`}
-function updateCount(){const e=document.getElementById("cart-count");if(e)e.textContent=Object.values(getCart()).reduce((a,b)=>a+b,0)}
-function addToCart(id){const c=getCart();c[id]=(c[id]||0)+1;saveCart(c);alert(`${PRODUCTS.find(p=>p.id===id).name} added to cart.`)}
-function changeQty(id,d){const c=getCart();c[id]=(c[id]||0)+d;if(c[id]<=0)delete c[id];saveCart(c);renderCheckout()}
-function removeItem(id){const c=getCart();delete c[id];saveCart(c);renderCheckout()}
-function renderMenu() {
-  const g = document.getElementById("menu-grid");
-  if (!g) return;
 
-  g.innerHTML = PRODUCTS.map(p => `
-    <article class="menu-card">
-      <img src="${p.image}" alt="${p.name}" class="menu-image">
-      <div class="menu-info">
-        <h3>${p.name}</h3>
-        <p>${p.description}</p>
-        <div class="price">${money(p.price)}</div>
-        <button class="add-btn" onclick="addToCart('${p.id}')">
-          ADD TO CART
-        </button>
-      </div>
-    </article>
-  `).join("");
+
+/* =========================================================
+   CART STORAGE
+   ========================================================= */
+
+const getCart = () => {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem("homeyCart")
+    ) || {};
+
+  } catch {
+
+    return {};
+
+  }
+
+};
+
+
+function saveCart(cart) {
+
+  localStorage.setItem(
+    "homeyCart",
+    JSON.stringify(cart)
+  );
+
+  updateCount();
+
 }
+
+
+function money(n) {
+
+  return `RM${n.toFixed(2)}`;
+
+}
+
+
+/* =========================================================
+   CART COUNT
+   ========================================================= */
+
+function updateCount() {
+
+  const element =
+    document.getElementById("cart-count");
+
+  if (!element) return;
+
+  const cart =
+    getCart();
+
+  const count =
+    Object.values(cart).reduce(
+      (total, quantity) =>
+        total + quantity,
+      0
+    );
+
+  element.textContent = count;
+
+}
+
+
+/* =========================================================
+   ADD INDIVIDUAL PRODUCT
+   ========================================================= */
+
+function addToCart(id) {
+
+  const product =
+    PRODUCTS.find(
+      p => p.id === id
+    );
+
+  if (!product) {
+
+    console.error(
+      "Product not found:",
+      id
+    );
+
+    return;
+
+  }
+
+
+  const cart =
+    getCart();
+
+  cart[id] =
+    (cart[id] || 0) + 1;
+
+
+  saveCart(cart);
+
+
+  alert(
+    `${product.name} added to cart.`
+  );
+
+}
+
+
+/* =========================================================
+   ADD BUNDLE TO CART
+   ========================================================= */
+
+function addBundleToCart(id) {
+
+  const bundle =
+    BUNDLES.find(
+      b => b.id === id
+    );
+
+  if (!bundle) {
+
+    console.error(
+      "Bundle not found:",
+      id
+    );
+
+    return;
+
+  }
+
+
+  const cart =
+    getCart();
+
+
+  /*
+     Bundle cart IDs are stored separately
+     from individual product IDs.
+
+     Example:
+
+     bundle:bundle-1
+     bundle:bundle-2
+  */
+
+  const cartId =
+    `bundle:${bundle.id}`;
+
+
+  cart[cartId] =
+    (cart[cartId] || 0) + 1;
+
+
+  saveCart(cart);
+
+
+  alert(
+    `${bundle.name} bundle added to cart.`
+  );
+
+}
+
+
+/* =========================================================
+   IDENTIFY CART ITEM
+   ========================================================= */
+
+function getCartItem(id) {
+
+
+  /* -------------------------
+     BUNDLE
+     ------------------------- */
+
+  if (
+    id.startsWith("bundle:")
+  ) {
+
+    const bundleId =
+      id.substring(
+        "bundle:".length
+      );
+
+
+    const bundle =
+      BUNDLES.find(
+        b => b.id === bundleId
+      );
+
+
+    if (!bundle) {
+
+      return null;
+
+    }
+
+
+    return {
+
+      type: "bundle",
+
+      id: id,
+
+      name: bundle.name,
+
+      price: bundle.price,
+
+      bundle: bundle
+
+    };
+
+  }
+
+
+  /* -------------------------
+     INDIVIDUAL PRODUCT
+     ------------------------- */
+
+  const product =
+    PRODUCTS.find(
+      p => p.id === id
+    );
+
+
+  if (!product) {
+
+    return null;
+
+  }
+
+
+  return {
+
+    type: "product",
+
+    id: id,
+
+    name: product.name,
+
+    price: product.price,
+
+    product: product
+
+  };
+
+}
+
+
+/* =========================================================
+   CHANGE QUANTITY
+   ========================================================= */
+
+function changeQty(id, difference) {
+
+  const cart =
+    getCart();
+
+
+  cart[id] =
+    (cart[id] || 0) +
+    difference;
+
+
+  if (
+    cart[id] <= 0
+  ) {
+
+    delete cart[id];
+
+  }
+
+
+  saveCart(cart);
+
+  renderCheckout();
+
+}
+
+
+/* =========================================================
+   REMOVE ITEM
+   ========================================================= */
+
+function removeItem(id) {
+
+  const cart =
+    getCart();
+
+
+  delete cart[id];
+
+
+  saveCart(cart);
+
+  renderCheckout();
+
+}
+
+
+/* =========================================================
+   RENDER INDIVIDUAL MENU
+   ========================================================= */
+
+function renderMenu() {
+
+  const grid =
+    document.getElementById(
+      "menu-grid"
+    );
+
+
+  if (!grid) return;
+
+
+  grid.innerHTML =
+    PRODUCTS.map(
+      p => `
+
+        <article class="menu-card">
+
+          <img
+            src="${p.image}"
+            alt="${p.name}"
+            class="menu-image"
+          >
+
+          <div class="menu-info">
+
+            <h3>
+              ${p.name}
+            </h3>
+
+            <p>
+              ${p.description}
+            </p>
+
+            <div class="price">
+              ${money(p.price)}
+            </div>
+
+            <button
+              class="add-btn"
+              onclick="addToCart('${p.id}')"
+            >
+              ADD TO CART
+            </button>
+
+          </div>
+
+        </article>
+
+      `
+    ).join("");
+
+}
+
+
+/* =========================================================
+   RENDER DYNAMIC BUNDLES
+   ========================================================= */
+
 function renderBundles() {
 
-  const g = document.getElementById("bundle-grid");
-
-  if (!g) return;
-
-  g.innerHTML = BUNDLES.map(bundle => {
-
-    const meals = bundle.meals.map(id =>
-      PRODUCTS.find(p => p.id === id)
-    ).filter(Boolean);
-
-    return `
-      <article class="bundle-card">
-
-        <div class="bundle-header">
-
-          <div>
-            <p class="bundle-number">BUNDLE ${bundle.number}</p>
-            <h2>${bundle.name}</h2>
-          </div>
-
-          <div class="bundle-price">
-            RM${bundle.price}
-          </div>
-
-        </div>
+  const grid =
+    document.getElementById(
+      "bundle-grid"
+    );
 
 
-        <p class="bundle-description">
-          ${bundle.description}
-        </p>
+  if (!grid) return;
 
 
-        <div class="bundle-meals">
+  grid.innerHTML =
+    BUNDLES.map(
+      bundle => {
 
-          ${meals.map(meal => `
-            <div class="bundle-meal">
 
-              <div
-                class="bundle-image"
-                style="background-image: url('${meal.image}');"
-                aria-label="${meal.name}">
+        const meals =
+          bundle.meals
+            .map(
+              id =>
+                PRODUCTS.find(
+                  p => p.id === id
+                )
+            )
+            .filter(Boolean);
+
+
+        return `
+
+          <article class="bundle-card">
+
+
+            <div class="bundle-header">
+
+              <div>
+
+                <p class="bundle-number">
+                  BUNDLE ${bundle.number}
+                </p>
+
+                <h2>
+                  ${bundle.name}
+                </h2>
+
               </div>
 
-              <h3>${meal.name}</h3>
+
+              <div class="bundle-price">
+                RM${bundle.price}
+              </div>
 
             </div>
-          `).join("")}
-
-        </div>
 
 
-        <div class="bundle-footer">
+            <p class="bundle-description">
+              ${bundle.description}
+            </p>
 
-          <span>
-            3 meal sets · RM${bundle.price}
-          </span>
 
-          <button
-            class="add-btn"
-            onclick="addBundleToCart('${bundle.id}')">
-            ADD BUNDLE
-          </button>
+            <div class="bundle-meals">
 
-        </div>
+              ${meals.map(
+                meal => `
 
-      </article>
-    `;
+                  <div class="bundle-meal">
 
-  }).join("");
+                    <div
+                      class="bundle-image"
+                      style="
+                        background-image:
+                        url('${meal.image}');
+                      "
+                      aria-label="${meal.name}"
+                    >
+                    </div>
+
+                    <h3>
+                      ${meal.name}
+                    </h3>
+
+                  </div>
+
+                `
+              ).join("")}
+
+            </div>
+
+
+            <div class="bundle-footer">
+
+              <span>
+                3 meal sets · RM${bundle.price}
+              </span>
+
+
+              <button
+                class="add-btn"
+                onclick="addBundleToCart('${bundle.id}')"
+              >
+                ADD BUNDLE
+              </button>
+
+            </div>
+
+
+          </article>
+
+        `;
+
+      }
+    ).join("");
 
 }
-function renderCheckout(){const w=document.getElementById("checkout-items"),t=document.getElementById("checkout-total");if(!w||!t)return;const c=getCart(),ids=Object.keys(c);if(!ids.length){w.innerHTML=`<div class="empty"><p>Your cart is empty.</p><a class="primary-btn" href="index.html">Browse the menu</a></div>`;t.textContent=money(0);return}let total=0;w.innerHTML=ids.map(id=>{const p=PRODUCTS.find(x=>x.id===id),q=c[id],line=p.price*q;total+=line;return `<div class="order-row"><div><div class="order-name">${p.name}</div><small>${money(p.price)} each</small></div><div class="qty"><button onclick="changeQty('${id}',-1)">−</button><b>${q}</b><button onclick="changeQty('${id}',1)">+</button></div><div><div class="order-price">${money(line)}</div><button class="remove" onclick="removeItem('${id}')">remove</button></div></div>`}).join("");t.textContent=money(total)}
-function message(){const c=getCart(),ids=Object.keys(c);if(!ids.length)return"";let total=0;const lines=ids.map(id=>{const p=PRODUCTS.find(x=>x.id===id),q=c[id];total+=p.price*q;return `- ${p.name} x ${q} = ${money(p.price*q)}`});const v=id=>document.getElementById(id)?.value.trim()||"";return ["HOMEY CAFE ORDER","",...lines,"",`TOTAL: ${money(total)}`,"",`Name: ${v("customer-name")}`,`Phone: ${v("customer-phone")}`,`Delivery address: ${v("customer-address")}`,`Payment reference: ${v("payment-ref")}`,`Notes: ${v("customer-notes")||"-"}`].join("\n")}
-function valid(){const f=document.getElementById("order-form");if(f&&!f.reportValidity())return false;if(!Object.keys(getCart()).length){status("Your cart is empty.");return false}return true}
-function status(s){const e=document.getElementById("checkout-status");if(e)e.textContent=s}
-function createOrder(){if(!valid())return;const m=message();if(WHATSAPP_NUMBER){window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(m)}`,"_blank");status("Opening WhatsApp with your order.")}else{status(m)}}
-async function copyOrder(){if(!valid())return;const m=message();try{await navigator.clipboard.writeText(m);status("Order details copied. Paste them into WhatsApp.")}catch{status(m)}}
-document.addEventListener("DOMContentLoaded",()=>{updateCount();renderMenu();renderCheckout();document.getElementById("send-order")?.addEventListener("click",createOrder);document.getElementById("copy-order")?.addEventListener("click",copyOrder)});
+
+
+/* =========================================================
+   RENDER CHECKOUT
+   ========================================================= */
+
+function renderCheckout() {
+
+  const wrapper =
+    document.getElementById(
+      "checkout-items"
+    );
+
+
+  const totalElement =
+    document.getElementById(
+      "checkout-total"
+    );
+
+
+  if (
+    !wrapper ||
+    !totalElement
+  ) {
+
+    return;
+
+  }
+
+
+  const cart =
+    getCart();
+
+
+  const ids =
+    Object.keys(cart);
+
+
+  /* -------------------------
+     EMPTY CART
+     ------------------------- */
+
+  if (!ids.length) {
+
+    wrapper.innerHTML = `
+
+      <div class="empty">
+
+        <p>
+          Your cart is empty.
+        </p>
+
+        <a
+          class="primary-btn"
+          href="index.html"
+        >
+          Browse the menu
+        </a>
+
+      </div>
+
+    `;
+
+
+    totalElement.textContent =
+      money(0);
+
+
+    return;
+
+  }
+
+
+  let total = 0;
+
+
+  wrapper.innerHTML =
+    ids.map(
+      id => {
+
+
+        const item =
+          getCartItem(id);
+
+
+        /*
+           If an old/invalid cart item
+           exists, simply ignore it.
+        */
+
+        if (!item) {
+
+          return "";
+
+        }
+
+
+        const quantity =
+          cart[id];
+
+
+        const lineTotal =
+          item.price *
+          quantity;
+
+
+        total += lineTotal;
+
+
+        /* =================================================
+           BUNDLE
+           ================================================= */
+
+        if (
+          item.type === "bundle"
+        ) {
+
+
+          const meals =
+            item.bundle.meals
+              .map(
+                mealId =>
+                  PRODUCTS.find(
+                    p =>
+                      p.id === mealId
+                  )
+              )
+              .filter(Boolean);
+
+
+          return `
+
+            <div class="order-row">
+
+
+              <div>
+
+                <div class="order-name">
+                  ${item.name} Bundle
+                </div>
+
+
+                <small>
+                  ${money(item.price)} each
+                </small>
+
+
+                <div
+                  style="
+                    margin-top:8px;
+                    font-size:13px;
+                    opacity:0.7;
+                    line-height:1.5;
+                  "
+                >
+
+                  ${meals.map(
+                    meal => `
+
+                      <div>
+                        • ${meal.name}
+                      </div>
+
+                    `
+                  ).join("")}
+
+                </div>
+
+              </div>
+
+
+              <div class="qty">
+
+                <button
+                  onclick="changeQty(
+                    '${id}',
+                    -1
+                  )"
+                >
+                  −
+                </button>
+
+
+                <b>
+                  ${quantity}
+                </b>
+
+
+                <button
+                  onclick="changeQty(
+                    '${id}',
+                    1
+                  )"
+                >
+                  +
+                </button>
+
+              </div>
+
+
+              <div>
+
+                <div class="order-price">
+                  ${money(lineTotal)}
+                </div>
+
+
+                <button
+                  class="remove"
+                  onclick="removeItem('${id}')"
+                >
+                  remove
+                </button>
+
+              </div>
+
+
+            </div>
+
+          `;
+
+        }
+
+
+        /* =================================================
+           INDIVIDUAL PRODUCT
+           ================================================= */
+
+        return `
+
+          <div class="order-row">
+
+
+            <div>
+
+              <div class="order-name">
+                ${item.name}
+              </div>
+
+              <small>
+                ${money(item.price)} each
+              </small>
+
+            </div>
+
+
+            <div class="qty">
+
+              <button
+                onclick="changeQty(
+                  '${id}',
+                  -1
+                )"
+              >
+                −
+              </button>
+
+
+              <b>
+                ${quantity}
+              </b>
+
+
+              <button
+                onclick="changeQty(
+                  '${id}',
+                  1
+                )"
+              >
+                +
+              </button>
+
+            </div>
+
+
+            <div>
+
+              <div class="order-price">
+                ${money(lineTotal)}
+              </div>
+
+
+              <button
+                class="remove"
+                onclick="removeItem('${id}')"
+              >
+                remove
+              </button>
+
+            </div>
+
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+
+  totalElement.textContent =
+    money(total);
+
+}
+
+
+/* =========================================================
+   CREATE WHATSAPP ORDER MESSAGE
+   ========================================================= */
+
+function message() {
+
+  const cart =
+    getCart();
+
+
+  const ids =
+    Object.keys(cart);
+
+
+  if (!ids.length) {
+
+    return "";
+
+  }
+
+
+  let total = 0;
+
+
+  const lines = [];
+
+
+  ids.forEach(
+    id => {
+
+
+      const item =
+        getCartItem(id);
+
+
+      if (!item) {
+
+        return;
+
+      }
+
+
+      const quantity =
+        cart[id];
+
+
+      const lineTotal =
+        item.price *
+        quantity;
+
+
+      total += lineTotal;
+
+
+      /* =================================================
+         BUNDLE MESSAGE
+         ================================================= */
+
+      if (
+        item.type === "bundle"
+      ) {
+
+
+        lines.push(
+          `- ${item.name} Bundle x ${quantity} = ${money(lineTotal)}`
+        );
+
+
+        const meals =
+          item.bundle.meals
+            .map(
+              mealId =>
+                PRODUCTS.find(
+                  p =>
+                    p.id === mealId
+                )
+            )
+            .filter(Boolean);
+
+
+        meals.forEach(
+          meal => {
+
+            lines.push(
+              `  • ${meal.name}`
+            );
+
+          }
+        );
+
+      }
+
+
+      /* =================================================
+         INDIVIDUAL PRODUCT MESSAGE
+         ================================================= */
+
+      else {
+
+        lines.push(
+          `- ${item.name} x ${quantity} = ${money(lineTotal)}`
+        );
+
+      }
+
+    }
+  );
+
+
+  /* =====================================================
+     CUSTOMER DETAILS
+     ===================================================== */
+
+  const value =
+    id =>
+      document
+        .getElementById(id)
+        ?.value
+        .trim() || "";
+
+
+  return [
+
+    "HOMEY CAFE ORDER",
+
+    "",
+
+    ...lines,
+
+    "",
+
+    `TOTAL: ${money(total)}`,
+
+    "",
+
+    `Name: ${value("customer-name")}`,
+
+    `Phone: ${value("customer-phone")}`,
+
+    `Delivery address: ${value("customer-address")}`,
+
+    `Payment reference: ${value("payment-ref")}`,
+
+    `Notes: ${value("customer-notes") || "-"}`
+
+  ].join("\n");
+
+}
+
+
+/* =========================================================
+   VALIDATE ORDER
+   ========================================================= */
+
+function valid() {
+
+  const form =
+    document.getElementById(
+      "order-form"
+    );
+
+
+  if (
+    form &&
+    !form.reportValidity()
+  ) {
+
+    return false;
+
+  }
+
+
+  if (
+    !Object.keys(
+      getCart()
+    ).length
+  ) {
+
+    status(
+      "Your cart is empty."
+    );
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+/* =========================================================
+   CHECKOUT STATUS
+   ========================================================= */
+
+function status(messageText) {
+
+  const element =
+    document.getElementById(
+      "checkout-status"
+    );
+
+
+  if (element) {
+
+    element.textContent =
+      messageText;
+
+  }
+
+}
+
+
+/* =========================================================
+   CREATE WHATSAPP ORDER
+   ========================================================= */
+
+function createOrder() {
+
+  if (!valid()) {
+
+    return;
+
+  }
+
+
+  const orderMessage =
+    message();
+
+
+  if (WHATSAPP_NUMBER) {
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(orderMessage)}`,
+      "_blank"
+    );
+
+
+    status(
+      "Opening WhatsApp with your order."
+    );
+
+  }
+
+  else {
+
+    status(
+      orderMessage
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   COPY ORDER DETAILS
+   ========================================================= */
+
+async function copyOrder() {
+
+  if (!valid()) {
+
+    return;
+
+  }
+
+
+  const orderMessage =
+    message();
+
+
+  try {
+
+    await navigator.clipboard.writeText(
+      orderMessage
+    );
+
+
+    status(
+      "Order details copied. Paste them into WhatsApp."
+    );
+
+  }
+
+  catch {
+
+    status(
+      orderMessage
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   PAGE INITIALISATION
+   ========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    updateCount();
+
+    renderMenu();
+
+    renderBundles();
+
+    renderCheckout();
+
+
+    document
+      .getElementById("send-order")
+      ?.addEventListener(
+        "click",
+        createOrder
+      );
+
+
+    document
+      .getElementById("copy-order")
+      ?.addEventListener(
+        "click",
+        copyOrder
+      );
+
+  }
+);

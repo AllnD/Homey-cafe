@@ -15,7 +15,7 @@ const PRODUCTS = [
     name: "Dakgalbi Bento",
     description: "Korean-style chicken with stir-fried vegetables.",
     price: 20,
-    image: "images/dakgalbi.jpg"
+    image: "images/dakglbi.png"
   },
 
   {

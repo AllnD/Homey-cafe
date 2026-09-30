@@ -1,16 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-  <title>Bundle Sets — Homey Cafe</title>
+>
+
+  <title>Homey Cafe — Bundle Sets</title>
+
+<meta
+name="description"
+content="Homey Cafe — frozen meal bundle sets."
+
+>
 
   <link
     rel="stylesheet"
@@ -19,190 +27,106 @@
 
   <style>
 
-    /* =====================================================
-       BUNDLE PAGE
-       ===================================================== */
-
-    .bundle-page {
-      padding-top: 60px;
-      padding-bottom: 80px;
+    .bundles-page {
+      padding: 55px 0 80px;
     }
 
-
-    .bundle-intro {
-      max-width: 760px;
-      margin-bottom: 50px;
+    .bundles-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 45px;
     }
 
-
-    .bundle-intro h1 {
-      margin-bottom: 15px;
+    .bundles-intro h1 {
+      margin: 8px 0 15px;
     }
 
-
-    .bundle-intro p {
-      font-size: 17px;
-      line-height: 1.7;
-      opacity: 0.75;
+    .bundles-intro p {
+      color: var(--muted);
     }
 
+    .bundle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
 
-    /* =====================================================
-       BUNDLE BOX
-       ===================================================== */
-
-    .bundle-box {
-      background: #fff;
+    .bundle-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 28px;
-      margin-bottom: 35px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
-
-    .bundle-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 20px;
-      margin-bottom: 12px;
+    .bundle-images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 180px;
     }
 
-
-    .bundle-number {
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      font-weight: 700;
-      opacity: 0.55;
-      margin: 0 0 5px;
+    .bundle-images img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
     }
 
-
-    .bundle-box h2 {
-      margin: 0;
+    .bundle-info {
+      padding: 22px;
     }
 
+    .bundle-info h2 {
+      margin: 0 0 8px;
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+    }
+
+    .bundle-info p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
 
     .bundle-price {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
-      white-space: nowrap;
+      color: var(--brown);
+      margin-bottom: 16px;
     }
 
-
-    .bundle-description {
-      margin: 0 0 25px;
-      opacity: 0.75;
-      line-height: 1.6;
-    }
-
-
-    /* =====================================================
-       MEAL IMAGES
-       ===================================================== */
-
-    .bundle-meals {
-      display: grid;
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-
-    .bundle-meal {
-      text-align: center;
-    }
-
-
-    .bundle-meal img {
+    .bundle-btn {
       width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 14px;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-
-    .bundle-meal h3 {
-      font-size: 15px;
-      margin: 0;
-      line-height: 1.4;
-    }
-
-
-    /* =====================================================
-       BUNDLE FOOTER
-       ===================================================== */
-
-    .bundle-footer {
-      margin-top: 25px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-
-    .bundle-footer span {
-      font-size: 14px;
-      opacity: 0.7;
-    }
-
-
-    .bundle-order-btn {
-      border: none;
+      border: 0;
       cursor: pointer;
-      font: inherit;
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 15px;
     }
 
+    .bundle-btn:hover {
+      opacity: 0.9;
+    }
 
-    /* =====================================================
-       MOBILE
-       ===================================================== */
+    @media (max-width: 900px) {
 
-    @media (max-width: 700px) {
-
-      .bundle-page {
-        padding-top: 40px;
+      .bundle-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
+    }
 
-      .bundle-box {
-        padding: 20px;
+    @media (max-width: 600px) {
+
+      .bundle-grid {
+        grid-template-columns: 1fr;
       }
 
-
-      .bundle-top {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-
-      .bundle-meals {
-        grid-template-columns:
-          1fr;
-        gap: 25px;
-      }
-
-
-      .bundle-meal img {
-        aspect-ratio: 4 / 3;
-      }
-
-
-      .bundle-footer {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-
-      .bundle-order-btn {
-        width: 100%;
-        text-align: center;
+      .bundle-images,
+      .bundle-images img {
+        height: 200px;
       }
 
     }
@@ -211,9 +135,7 @@
 
 </head>
 
-
 <body>
-
 
   <!-- =====================================================
        HEADER
@@ -221,676 +143,383 @@
 
   <header class="site-header">
 
-    <div class="container nav">
+```
+<div class="container nav">
 
-      <a
-        class="brand"
-        href="index.html"
-      >
+  <a
+    class="brand"
+    href="index.html"
+  >
+    <span>Homey</span>
+    <small>cafe</small>
+  </a>
 
-        <img
-          src="homey-logo.png"
-          alt="Homey Cafe"
-        >
+  <a
+    class="cart-link"
+    href="checkout.html"
+  >
+    Cart
+    <b id="cart-count">0</b>
+  </a>
 
-      </a>
-
-
-      <nav>
-
-        <a href="index.html">
-          Menu
-        </a>
-
-        <a href="checkout.html">
-          Cart
-          <span
-            id="cart-count"
-            class="cart-count"
-          >
-            0
-          </span>
-        </a>
-
-      </nav>
-
-    </div>
+</div>
+```
 
   </header>
-
-
 
   <!-- =====================================================
        MAIN
        ===================================================== -->
 
-  <main class="bundle-page container">
+  <main>
 
+```
+<section class="bundles-page">
 
-    <!-- INTRO -->
+  <div class="container">
 
-    <section class="bundle-intro">
+    <div class="bundles-intro">
 
       <p class="eyebrow">
         BUNDLE SETS
       </p>
 
       <h1>
-        Three meals. RM60.
+        Stock your freezer.
       </h1>
 
       <p>
-        Stock your freezer with three ready-to-enjoy
-        meals in one convenient bundle. Choose the
-        combination that suits you best.
+        Each bundle contains three complete meals.
+        Choose your favourites and keep them ready
+        whenever you need a proper meal.
       </p>
 
-    </section>
+    </div>
 
 
+    <div class="bundle-grid">
 
-    <!-- ===================================================
-         BUNDLE 01
-         =================================================== -->
 
-    <article class="bundle-box">
+      <!-- =================================================
+           BUNDLE 1
+           ================================================= -->
 
-      <div class="bundle-top">
+      <article class="bundle-card">
 
-        <div>
+        <div class="bundle-images">
 
-          <p class="bundle-number">
-            BUNDLE 01
-          </p>
+          <img
+            src="images/spicy.jpg"
+            alt="Nasi Lemak"
+          >
+
+          <img
+            src="images/dakgalbi.jpg"
+            alt="Dakgalbi"
+          >
+
+          <img
+            src="images/japanese.png"
+            alt="Japanese Curry"
+          >
+
+        </div>
+
+        <div class="bundle-info">
 
           <h2>
             Uncle's Choice
           </h2>
 
-        </div>
+          <p>
+            Spicy Nasi Lemak, Dakgalbi Bento
+            and Japanese Curry.
+          </p>
 
-        <div class="bundle-price">
-          RM60
-        </div>
+          <div class="bundle-price">
+            RM60
+          </div>
 
-      </div>
-
-
-      <p class="bundle-description">
-        Three comforting favourites chosen for a
-        satisfying home-style meal.
-      </p>
-
-
-      <div class="bundle-meals">
-
-        <div class="bundle-meal">
-
-          <img
-            src="images/spicy.jpg"
-            alt="Uncle's Choice Bento"
+          <button
+            class="bundle-btn"
+            onclick="addBundleToCart('bundle-1')"
           >
-
-          <h3>
-            Uncle's Choice Bento
-          </h3>
+            Add Bundle to Cart
+          </button>
 
         </div>
 
+      </article>
 
-        <div class="bundle-meal">
+
+      <!-- =================================================
+           BUNDLE 2
+           ================================================= -->
+
+      <article class="bundle-card">
+
+        <div class="bundle-images">
 
           <img
             src="images/dakgalbi.jpg"
-            alt="Dakgalbi Bento"
+            alt="Dakgalbi"
           >
-
-          <h3>
-            Dakgalbi Bento
-          </h3>
-
-        </div>
-
-
-        <div class="bundle-meal">
 
           <img
-            src="images/japanese.png"
-            alt="Japanese Curry Bento"
+            src="images/kimchi-chicken.png"
+            alt="Kimchi Chicken"
           >
 
-          <h3>
-            Japanese Curry Bento
-          </h3>
+          <img
+            src="images/spicy.jpg"
+            alt="Nasi Lemak"
+          >
 
         </div>
 
-      </div>
-
-
-      <div class="bundle-footer">
-
-        <span>
-          3 meal sets · RM60
-        </span>
-
-
-        <button
-          type="button"
-          class="primary-btn bundle-order-btn"
-          onclick="addBundleToCart('bundle-1')"
-        >
-          ADD BUNDLE
-        </button>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- ===================================================
-         BUNDLE 02
-         =================================================== -->
-
-    <article class="bundle-box">
-
-      <div class="bundle-top">
-
-        <div>
-
-          <p class="bundle-number">
-            BUNDLE 02
-          </p>
+        <div class="bundle-info">
 
           <h2>
             Korean Favourites
           </h2>
 
+          <p>
+            Dakgalbi Bento, Kimchi Chicken
+            and Spicy Nasi Lemak.
+          </p>
+
+          <div class="bundle-price">
+            RM60
+          </div>
+
+          <button
+            class="bundle-btn"
+            onclick="addBundleToCart('bundle-2')"
+          >
+            Add Bundle to Cart
+          </button>
+
         </div>
 
-        <div class="bundle-price">
-          RM60
-        </div>
-
-      </div>
+      </article>
 
 
-      <p class="bundle-description">
-        A selection of Korean-inspired meals with
-        plenty of flavour.
-      </p>
+      <!-- =================================================
+           BUNDLE 3
+           ================================================= -->
 
+      <article class="bundle-card">
 
-      <div class="bundle-meals">
-
-        <div class="bundle-meal">
+        <div class="bundle-images">
 
           <img
-            src="images/dakgalbi.jpg"
-            alt="Dakgalbi Bento"
+            src="images/japanese.png"
+            alt="Japanese Curry"
           >
-
-          <h3>
-            Dakgalbi Bento
-          </h3>
-
-        </div>
-
-
-        <div class="bundle-meal">
 
           <img
-            src="images/kimchi-chicken.png"
-            alt="Kimchi Chicken Bento"
+            src="images/paprika-chicken.jpg"
+            alt="Paprika Chicken"
           >
-
-          <h3>
-            Kimchi Chicken Bento
-          </h3>
-
-        </div>
-
-
-        <div class="bundle-meal">
 
           <img
             src="images/spicy.jpg"
-            alt="Uncle's Choice Bento"
+            alt="Nasi Lemak"
           >
-
-          <h3>
-            Uncle's Choice Bento
-          </h3>
 
         </div>
 
-      </div>
-
-
-      <div class="bundle-footer">
-
-        <span>
-          3 meal sets · RM60
-        </span>
-
-
-        <button
-          type="button"
-          class="primary-btn bundle-order-btn"
-          onclick="addBundleToCart('bundle-2')"
-        >
-          ADD BUNDLE
-        </button>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- ===================================================
-         BUNDLE 03
-         =================================================== -->
-
-    <article class="bundle-box">
-
-      <div class="bundle-top">
-
-        <div>
-
-          <p class="bundle-number">
-            BUNDLE 03
-          </p>
+        <div class="bundle-info">
 
           <h2>
             Comfort Food
           </h2>
 
-        </div>
+          <p>
+            Japanese Curry, Paprika Chicken
+            and Spicy Nasi Lemak.
+          </p>
 
-        <div class="bundle-price">
-          RM60
-        </div>
+          <div class="bundle-price">
+            RM60
+          </div>
 
-      </div>
-
-
-      <p class="bundle-description">
-        Classic comfort meals for those days when
-        you want something hearty.
-      </p>
-
-
-      <div class="bundle-meals">
-
-        <div class="bundle-meal">
-
-          <img
-            src="images/japanese.png"
-            alt="Japanese Curry Bento"
+          <button
+            class="bundle-btn"
+            onclick="addBundleToCart('bundle-3')"
           >
-
-          <h3>
-            Japanese Curry Bento
-          </h3>
+            Add Bundle to Cart
+          </button>
 
         </div>
 
-
-        <div class="bundle-meal">
-
-          <img
-            src="images/paprika-chicken.jpg"
-            alt="Hungarian Paprika Chicken"
-          >
-
-          <h3>
-            Hungarian Paprika Chicken
-          </h3>
-
-        </div>
+      </article>
 
 
-        <div class="bundle-meal">
+      <!-- =================================================
+           BUNDLE 4
+           ================================================= -->
+
+      <article class="bundle-card">
+
+        <div class="bundle-images">
 
           <img
             src="images/spicy.jpg"
-            alt="Uncle's Choice Bento"
+            alt="Nasi Lemak"
           >
 
-          <h3>
-            Uncle's Choice Bento
-          </h3>
+          <img
+            src="images/paprika-chicken.jpg"
+            alt="Paprika Chicken"
+          >
+
+          <img
+            src="images/kimchi-chicken.png"
+            alt="Kimchi Chicken"
+          >
 
         </div>
 
-      </div>
-
-
-      <div class="bundle-footer">
-
-        <span>
-          3 meal sets · RM60
-        </span>
-
-
-        <button
-          type="button"
-          class="primary-btn bundle-order-btn"
-          onclick="addBundleToCart('bundle-3')"
-        >
-          ADD BUNDLE
-        </button>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- ===================================================
-         BUNDLE 04
-         =================================================== -->
-
-    <article class="bundle-box">
-
-      <div class="bundle-top">
-
-        <div>
-
-          <p class="bundle-number">
-            BUNDLE 04
-          </p>
+        <div class="bundle-info">
 
           <h2>
             Chicken Lovers
           </h2>
 
-        </div>
-
-        <div class="bundle-price">
-          RM60
-        </div>
-
-      </div>
-
-
-      <p class="bundle-description">
-        Three chicken-based favourites packed into
-        one convenient bundle.
-      </p>
-
-
-      <div class="bundle-meals">
-
-        <div class="bundle-meal">
-
-          <img
-            src="images/spicy.jpg"
-            alt="Uncle's Choice Bento"
-          >
-
-          <h3>
-            Uncle's Choice Bento
-          </h3>
-
-        </div>
-
-
-        <div class="bundle-meal">
-
-          <img
-            src="images/paprika-chicken.jpg"
-            alt="Hungarian Paprika Chicken"
-          >
-
-          <h3>
-            Hungarian Paprika Chicken
-          </h3>
-
-        </div>
-
-
-        <div class="bundle-meal">
-
-          <img
-            src="images/kimchi-chicken.png"
-            alt="Kimchi Chicken Bento"
-          >
-
-          <h3>
-            Kimchi Chicken Bento
-          </h3>
-
-        </div>
-
-      </div>
-
-
-      <div class="bundle-footer">
-
-        <span>
-          3 meal sets · RM60
-        </span>
-
-
-        <button
-          type="button"
-          class="primary-btn bundle-order-btn"
-          onclick="addBundleToCart('bundle-4')"
-        >
-          ADD BUNDLE
-        </button>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- ===================================================
-         BUNDLE 05
-         =================================================== -->
-
-    <article class="bundle-box">
-
-      <div class="bundle-top">
-
-        <div>
-
-          <p class="bundle-number">
-            BUNDLE 05
+          <p>
+            Spicy Nasi Lemak, Paprika Chicken
+            and Kimchi Chicken.
           </p>
+
+          <div class="bundle-price">
+            RM60
+          </div>
+
+          <button
+            class="bundle-btn"
+            onclick="addBundleToCart('bundle-4')"
+          >
+            Add Bundle to Cart
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- =================================================
+           BUNDLE 5
+           ================================================= -->
+
+      <article class="bundle-card">
+
+        <div class="bundle-images">
+
+          <img
+            src="images/tuna.jpeg"
+            alt="Tuna Corn"
+          >
+
+          <img
+            src="images/japanese.png"
+            alt="Japanese Curry"
+          >
+
+          <img
+            src="images/dakgalbi.jpg"
+            alt="Dakgalbi"
+          >
+
+        </div>
+
+        <div class="bundle-info">
 
           <h2>
             Mixed Favourites
           </h2>
 
+          <p>
+            Tuna Corn, Japanese Curry
+            and Dakgalbi Bento.
+          </p>
+
+          <div class="bundle-price">
+            RM60
+          </div>
+
+          <button
+            class="bundle-btn"
+            onclick="addBundleToCart('bundle-5')"
+          >
+            Add Bundle to Cart
+          </button>
+
         </div>
 
-        <div class="bundle-price">
-          RM60
-        </div>
-
-      </div>
+      </article>
 
 
-      <p class="bundle-description">
-        A little bit of everything for those who
-        like variety.
-      </p>
+      <!-- =================================================
+           BUNDLE 6
+           ================================================= -->
 
+      <article class="bundle-card">
 
-      <div class="bundle-meals">
-
-        <div class="bundle-meal">
+        <div class="bundle-images">
 
           <img
             src="images/tuna.jpeg"
-            alt="Tuna Corn Bento"
+            alt="Tuna Corn"
           >
-
-          <h3>
-            Tuna Corn Bento
-          </h3>
-
-        </div>
-
-
-        <div class="bundle-meal">
 
           <img
-            src="images/japanese.png"
-            alt="Japanese Curry Bento"
+            src="images/kimchi-chicken.png"
+            alt="Kimchi Chicken"
           >
-
-          <h3>
-            Japanese Curry Bento
-          </h3>
-
-        </div>
-
-
-        <div class="bundle-meal">
 
           <img
-            src="images/dakgalbi.jpg"
-            alt="Dakgalbi Bento"
+            src="images/paprika-chicken.jpg"
+            alt="Paprika Chicken"
           >
-
-          <h3>
-            Dakgalbi Bento
-          </h3>
 
         </div>
 
-      </div>
-
-
-      <div class="bundle-footer">
-
-        <span>
-          3 meal sets · RM60
-        </span>
-
-
-        <button
-          type="button"
-          class="primary-btn bundle-order-btn"
-          onclick="addBundleToCart('bundle-5')"
-        >
-          ADD BUNDLE
-        </button>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- ===================================================
-         BUNDLE 06
-         =================================================== -->
-
-    <article class="bundle-box">
-
-      <div class="bundle-top">
-
-        <div>
-
-          <p class="bundle-number">
-            BUNDLE 06
-          </p>
+        <div class="bundle-info">
 
           <h2>
             Homey Selection
           </h2>
 
-        </div>
+          <p>
+            Tuna Corn, Kimchi Chicken
+            and Paprika Chicken.
+          </p>
 
-        <div class="bundle-price">
-          RM60
-        </div>
+          <div class="bundle-price">
+            RM60
+          </div>
 
-      </div>
-
-
-      <p class="bundle-description">
-        A selection of Homey Cafe favourites for
-        your freezer.
-      </p>
-
-
-      <div class="bundle-meals">
-
-        <div class="bundle-meal">
-
-          <img
-            src="images/tuna.jpeg"
-            alt="Tuna Corn Bento"
+          <button
+            class="bundle-btn"
+            onclick="addBundleToCart('bundle-6')"
           >
-
-          <h3>
-            Tuna Corn Bento
-          </h3>
+            Add Bundle to Cart
+          </button>
 
         </div>
 
-
-        <div class="bundle-meal">
-
-          <img
-            src="images/kimchi-chicken.png"
-            alt="Kimchi Chicken Bento"
-          >
-
-          <h3>
-            Kimchi Chicken Bento
-          </h3>
-
-        </div>
+      </article>
 
 
-        <div class="bundle-meal">
+    </div>
 
-          <img
-            src="images/paprika-chicken.jpg"
-            alt="Hungarian Paprika Chicken"
-          >
+  </div>
 
-          <h3>
-            Hungarian Paprika Chicken
-          </h3>
-
-        </div>
-
-      </div>
-
-
-      <div class="bundle-footer">
-
-        <span>
-          3 meal sets · RM60
-        </span>
-
-
-        <button
-          type="button"
-          class="primary-btn bundle-order-btn"
-          onclick="addBundleToCart('bundle-6')"
-        >
-          ADD BUNDLE
-        </button>
-
-      </div>
-
-    </article>
-
+</section>
+```
 
   </main>
-
-
 
   <!-- =====================================================
        FOOTER
@@ -898,40 +527,34 @@
 
   <footer>
 
-    <div class="container footer-inner">
+```
+<div class="container footer-inner">
 
-      <div>
+  <div>
 
-        <strong>
-          Homey cafe
-        </strong>
+    <strong>
+      Homey cafe
+    </strong>
 
-        <span>
-          Restaurant in your fridge.
-        </span>
+    <span>
+      Restaurant in your fridge.
+    </span>
 
-      </div>
+  </div>
 
+  <a
+    class="secondary-btn"
+    href="checkout.html"
+  >
+    Go to checkout
+  </a>
 
-      <a
-        class="secondary-btn"
-        href="index.html"
-      >
-        Continue shopping
-      </a>
-
-    </div>
+</div>
+```
 
   </footer>
-
-
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
 
   <script src="script.js"></script>
 
 </body>
-
 </html>

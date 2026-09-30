@@ -1257,7 +1257,7 @@ async function copyOrder() {
 
 
     status(
-      "Order details copied. Paste them into WhatsApp."
+      "Order details copied. Paste them into WhatsApp or email."
     );
 
   }

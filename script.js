@@ -1,7 +1,7 @@
 /* Homey Cafe: edit PRODUCTS and WHATSAPP_NUMBER. Put your QR at assets/tng-qr.png. */
 const WHATSAPP_NUMBER="60129313052"; // e.g. "60123456789"
  const PRODUCTS = [
-  { id: "spicy-bento", name: "Spicy Chicken Bento", description: "Chicken curry, omelette egg and vegetables.", price: 30, image: "images/spicy.jpg" },
+  { id: "spicy-bento", name: "Uncle's Choice Bento", description: "Chicken curry, omelette egg,sambal prawns and vegetables.", price: 30, image: "images/spicy.jpg" },
   { id: "dakgalbi-bento", name: "Dakgalbi Bento", description: "Korean-style chicken with stir-fried vegetables.", price: 20, image: "images/dakgalbi.jpg" },
   { id: "japanese-curry", name: "Japanese Curry Bento", description: "Japanese curry chicken with potato and carrot.", price: 25, image: "images/japanese.png" },
   { id: "paprika-chicken", name: "Hungarian Paprika Chicken", description: "Roasted chicken with paprika vegetable spaghetti.", price: 22, image: "images/paprika-chicken.jpg" },

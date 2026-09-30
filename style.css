@@ -155,3 +155,19 @@
   }
 
 }
+/* Style for the checkout button link */
+.secondary-btn {
+  background-color: #ff6b6b; /* The button color (change this to whatever you like) */
+  color: #ffffff;            /* The text color (white) */
+  text-decoration: none;    /* Removes the default link underline */
+  padding: 10px 20px;       /* Spacing inside the button (top/bottom, left/right) */
+  border-radius: 5px;       /* Rounds the corners */
+  display: inline-block;    /* Makes the link act like a proper button block */
+  font-weight: 600;         /* Makes the text bold */
+  transition: background-color 0.2s ease; /* Makes the hover effect smooth */
+}
+
+/* Color change when hovering mouse over the button */
+.secondary-btn:hover {
+  background-color: #ee5253; /* A slightly darker shade for the hover effect */
+}

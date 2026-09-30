@@ -21,7 +21,7 @@ const PRODUCTS = [
   {
     id: "japanese-curry",
     name: "Japanese Curry Bento",
-    description: "Japanese curry chicken with potato and carrot.",
+    description: "Main:Japanese curry chicken with potato and carrot.Side: Brocolli, tuna corn",
     price: 25,
     image: "images/japanese.png"
   },

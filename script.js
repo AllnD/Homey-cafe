@@ -31,7 +31,7 @@ const PRODUCTS = [
     name: "Hungarian Paprika Chicken",
     description: "Roasted chicken with paprika vegetable spaghetti.",
     price: 22,
-    image: "images/paprika-chicken.jpg"
+    image: "images/paprika.png"
   },
 
   {

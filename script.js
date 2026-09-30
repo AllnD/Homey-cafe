@@ -192,6 +192,59 @@ function renderMenu() {
     </article>
   `).join("");
 }
+function renderBundles() {
+
+  const g = document.getElementById("bundle-grid");
+
+  if (!g) return;
+
+  g.innerHTML = BUNDLES.map(bundle => {
+
+    const meals = bundle.meals.map(id =>
+      PRODUCTS.find(p => p.id === id)
+    ).filter(Boolean);
+
+    return `
+      <article class="bundle-card">
+
+        <div class="bundle-meals">
+
+          ${meals.map(meal => `
+            <div class="bundle-meal">
+
+              <div
+                class="bundle-image"
+                style="background-image: url('${meal.image}');"
+                aria-label="${meal.name}">
+              </div>
+
+              <h3>${meal.name}</h3>
+
+            </div>
+          `).join("")}
+
+        </div>
+
+        <div class="bundle-info">
+
+          <div>
+            <p class="eyebrow">${bundle.name}</p>
+            <h2>3 Meals for RM60</h2>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="addBundleToCart('${bundle.id}')">
+            ADD BUNDLE
+          </button>
+
+        </div>
+
+      </article>
+    `;
+
+  }).join("");
+}
 function renderCheckout(){const w=document.getElementById("checkout-items"),t=document.getElementById("checkout-total");if(!w||!t)return;const c=getCart(),ids=Object.keys(c);if(!ids.length){w.innerHTML=`<div class="empty"><p>Your cart is empty.</p><a class="primary-btn" href="index.html">Browse the menu</a></div>`;t.textContent=money(0);return}let total=0;w.innerHTML=ids.map(id=>{const p=PRODUCTS.find(x=>x.id===id),q=c[id],line=p.price*q;total+=line;return `<div class="order-row"><div><div class="order-name">${p.name}</div><small>${money(p.price)} each</small></div><div class="qty"><button onclick="changeQty('${id}',-1)">−</button><b>${q}</b><button onclick="changeQty('${id}',1)">+</button></div><div><div class="order-price">${money(line)}</div><button class="remove" onclick="removeItem('${id}')">remove</button></div></div>`}).join("");t.textContent=money(total)}
 function message(){const c=getCart(),ids=Object.keys(c);if(!ids.length)return"";let total=0;const lines=ids.map(id=>{const p=PRODUCTS.find(x=>x.id===id),q=c[id];total+=p.price*q;return `- ${p.name} x ${q} = ${money(p.price*q)}`});const v=id=>document.getElementById(id)?.value.trim()||"";return ["HOMEY CAFE ORDER","",...lines,"",`TOTAL: ${money(total)}`,"",`Name: ${v("customer-name")}`,`Phone: ${v("customer-phone")}`,`Delivery address: ${v("customer-address")}`,`Payment reference: ${v("payment-ref")}`,`Notes: ${v("customer-notes")||"-"}`].join("\n")}
 function valid(){const f=document.getElementById("order-form");if(f&&!f.reportValidity())return false;if(!Object.keys(getCart()).length){status("Your cart is empty.");return false}return true}

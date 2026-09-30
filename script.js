@@ -202,38 +202,34 @@ const BUNDLES = [
    CART STORAGE
    ========================================================= */
 
-function getCart() {
+const getCart = () => {
+
   try {
-    const cart = JSON.parse(localStorage.getItem("homeyCart")) || {};
 
-    // Remove anything with zero or negative quantity
-    Object.keys(cart).forEach(id => {
-      if (!Number.isFinite(cart[id]) || cart[id] <= 0) {
-        delete cart[id];
-      }
-    });
-
-    return cart;
+    return JSON.parse(
+      localStorage.getItem("homeyCart")
+    ) || {};
 
   } catch {
+
     return {};
+
   }
-}
+
+};
 
 
 function saveCart(cart) {
 
-  // Clean zero/invalid quantities before saving
-  Object.keys(cart).forEach(id => {
-    if (!Number.isFinite(cart[id]) || cart[id] <= 0) {
-      delete cart[id];
-    }
-  });
-
-  localStorage.setItem("homeyCart", JSON.stringify(cart));
+  localStorage.setItem(
+    "homeyCart",
+    JSON.stringify(cart)
+  );
 
   updateCount();
+
 }
+
 
 function money(n) {
 
@@ -248,18 +244,23 @@ function money(n) {
 
 function updateCount() {
 
-  const el = document.getElementById("cart-count");
+  const element =
+    document.getElementById("cart-count");
 
-  if (!el) return;
+  if (!element) return;
 
-  const cart = getCart();
+  const cart =
+    getCart();
 
-  const count = Object.values(cart).reduce(
-    (total, qty) => total + Math.max(0, Number(qty) || 0),
-    0
-  );
+  const count =
+    Object.values(cart).reduce(
+      (total, quantity) =>
+        total + quantity,
+      0
+    );
 
-  el.textContent = count;
+  element.textContent = count;
+
 }
 
 
@@ -447,23 +448,24 @@ function getCartItem(id) {
    CHANGE QUANTITY
    ========================================================= */
 
-function changeQty(id, delta) {
+function changeQty(id, difference) {
 
-  const cart = getCart();
+  const cart =
+    getCart();
 
-  const currentQty = Number(cart[id]) || 0;
-  const newQty = currentQty + delta;
 
-  if (newQty <= 0) {
+  cart[id] =
+    (cart[id] || 0) +
+    difference;
+
+
+  if (
+    cart[id] <= 0
+  ) {
+
     delete cart[id];
-  } else {
-    cart[id] = newQty;
+
   }
-
-  saveCart(cart);
-
-  renderCheckout();
-}
 
 
   saveCart(cart);
@@ -479,13 +481,17 @@ function changeQty(id, delta) {
 
 function removeItem(id) {
 
-  const cart = getCart();
+  const cart =
+    getCart();
+
 
   delete cart[id];
+
 
   saveCart(cart);
 
   renderCheckout();
+
 }
 
 

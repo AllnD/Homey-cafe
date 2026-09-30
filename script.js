@@ -219,6 +219,25 @@ function renderBundles() {
     return `
       <article class="bundle-card">
 
+        <div class="bundle-header">
+
+          <div>
+            <p class="bundle-number">BUNDLE ${bundle.number}</p>
+            <h2>${bundle.name}</h2>
+          </div>
+
+          <div class="bundle-price">
+            RM${bundle.price}
+          </div>
+
+        </div>
+
+
+        <p class="bundle-description">
+          ${bundle.description}
+        </p>
+
+
         <div class="bundle-meals">
 
           ${meals.map(meal => `
@@ -237,12 +256,12 @@ function renderBundles() {
 
         </div>
 
-        <div class="bundle-info">
 
-          <div>
-            <p class="eyebrow">${bundle.name}</p>
-            <h2>3 Meals for RM60</h2>
-          </div>
+        <div class="bundle-footer">
+
+          <span>
+            3 meal sets · RM${bundle.price}
+          </span>
 
           <button
             class="add-btn"
@@ -256,6 +275,7 @@ function renderBundles() {
     `;
 
   }).join("");
+
 }
 function renderCheckout(){const w=document.getElementById("checkout-items"),t=document.getElementById("checkout-total");if(!w||!t)return;const c=getCart(),ids=Object.keys(c);if(!ids.length){w.innerHTML=`<div class="empty"><p>Your cart is empty.</p><a class="primary-btn" href="index.html">Browse the menu</a></div>`;t.textContent=money(0);return}let total=0;w.innerHTML=ids.map(id=>{const p=PRODUCTS.find(x=>x.id===id),q=c[id],line=p.price*q;total+=line;return `<div class="order-row"><div><div class="order-name">${p.name}</div><small>${money(p.price)} each</small></div><div class="qty"><button onclick="changeQty('${id}',-1)">−</button><b>${q}</b><button onclick="changeQty('${id}',1)">+</button></div><div><div class="order-price">${money(line)}</div><button class="remove" onclick="removeItem('${id}')">remove</button></div></div>`}).join("");t.textContent=money(total)}
 function message(){const c=getCart(),ids=Object.keys(c);if(!ids.length)return"";let total=0;const lines=ids.map(id=>{const p=PRODUCTS.find(x=>x.id===id),q=c[id];total+=p.price*q;return `- ${p.name} x ${q} = ${money(p.price*q)}`});const v=id=>document.getElementById(id)?.value.trim()||"";return ["HOMEY CAFE ORDER","",...lines,"",`TOTAL: ${money(total)}`,"",`Name: ${v("customer-name")}`,`Phone: ${v("customer-phone")}`,`Delivery address: ${v("customer-address")}`,`Payment reference: ${v("payment-ref")}`,`Notes: ${v("customer-notes")||"-"}`].join("\n")}

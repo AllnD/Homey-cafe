@@ -1,0 +1,1 @@
+Replace this file with your actual TNG QR image named tng-qr.png.

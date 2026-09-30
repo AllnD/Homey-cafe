@@ -1,0 +1,10 @@
+Put your food photos in this folder.
+
+Recommended filenames:
+spicy-bento.jpg
+dakgalbi.jpg
+japanese-curry.jpg
+paprika-chicken.jpg
+tuna-corn.jpg
+kimchi-chicken.jpg
+tng-qr.png

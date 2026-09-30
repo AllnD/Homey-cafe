@@ -7,7 +7,12 @@ const WHATSAPP_NUMBER="60129313052"; // e.g. "60123456789"
   { id: "paprika-chicken", name: "Hungarian Paprika Chicken", description: "Roasted chicken with paprika vegetable spaghetti.", price: 22, image: "images/paprika-chicken.jpg" },
   { id: "tuna-corn", name: "Tuna Corn Bento", description: "Tuna, sweet corn, egg roll and broccoli.", price: 21, image: "images/tuna.jpeg" },
   { id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
-
+{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
+{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
+{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
+{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
+{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
+{ id: "kimchi-chicken", name: "Kimchi Chicken Bento", description: "Savory chicken with cooked kimchi and vegetables.", price: 20, image: "images/kimchi-chicken.png" }
 ];
 const getCart=()=>{try{return JSON.parse(localStorage.getItem("homeyCart"))||{}}catch{return{}}};
 function saveCart(c){localStorage.setItem("homeyCart",JSON.stringify(c));updateCount()}

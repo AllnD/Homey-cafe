@@ -98,6 +98,75 @@ const PRODUCTS = [
     image: "images/kimchi-chicken.png"
   }
 ];
+const BUNDLES = [
+
+  {
+    id: "bundle-1",
+    name: "Uncle's Choice",
+    meals: [
+      "spicy-bento",
+      "dakgalbi-bento",
+      "japanese-curry"
+    ],
+    price: 60
+  },
+
+  {
+    id: "bundle-2",
+    name: "Korean Favourites",
+    meals: [
+      "dakgalbi-bento",
+      "kimchi-chicken",
+      "spicy-bento"
+    ],
+    price: 60
+  },
+
+  {
+    id: "bundle-3",
+    name: "Comfort Food",
+    meals: [
+      "japanese-curry",
+      "paprika-chicken",
+      "spicy-bento"
+    ],
+    price: 60
+  },
+
+  {
+    id: "bundle-4",
+    name: "Chicken Lovers",
+    meals: [
+      "spicy-bento",
+      "paprika-chicken",
+      "kimchi-chicken"
+    ],
+    price: 60
+  },
+
+  {
+    id: "bundle-5",
+    name: "Mixed Favourites",
+    meals: [
+      "tuna-corn",
+      "japanese-curry",
+      "dakgalbi-bento"
+    ],
+    price: 60
+  },
+
+  {
+    id: "bundle-6",
+    name: "Homey Selection",
+    meals: [
+      "tuna-corn",
+      "kimchi-chicken",
+      "paprika-chicken"
+    ],
+    price: 60
+  }
+
+];
 const getCart=()=>{try{return JSON.parse(localStorage.getItem("homeyCart"))||{}}catch{return{}}};
 function saveCart(c){localStorage.setItem("homeyCart",JSON.stringify(c));updateCount()}
 function money(n){return `RM${n.toFixed(2)}`}

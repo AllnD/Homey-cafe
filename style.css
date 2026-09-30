@@ -219,3 +219,9 @@
 .secondary-btn:hover {
   background: var(--line);
 }
+.brand img {
+    display: block;
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+}

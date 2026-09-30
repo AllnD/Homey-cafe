@@ -3,9 +3,9 @@ const WHATSAPP_NUMBER = "60129313052";
 
 const PRODUCTS = [
   {
-    id: "spicy-bento",
-    name: "Uncle's Choice Bento",
-    description: "Chicken curry, omelette egg, sambal prawns and vegetables.",
+    id: "nasi-lemak",
+    name: "Nasi Lemak with Malaysian Curry",
+    description: "Malaysian chicken curry, omelette egg, stir fry vegetables.",
     price: 30,
     image: "images/spicy.jpg"
   },
@@ -21,7 +21,7 @@ const PRODUCTS = [
   {
     id: "japanese-curry",
     name: "Japanese Curry Bento",
-    description: "Main:Japanese curry chicken with potato and carrot Side: Brocolli, tamagoyaki,tuna corn",
+    description: "Main:Japanese curry chicken with potato and carrot. Side: Brocolli, tamagoyaki,mayo tunacorn",
     price: 25,
     image: "images/japanese.png"
   },

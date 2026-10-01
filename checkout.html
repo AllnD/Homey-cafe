@@ -1,5 +1,460 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Checkout — Homey Cafe</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="site-header"><div class="container nav"><a class="brand" href="index.html"><span>Homey</span><small>cafe</small></a><a class="cart-link" href="index.html">← Back to menu</a></div></header>
-<main class="checkout-page container"><div class="section-heading"><div><p class="eyebrow">CHECKOUT</p><h1>Your order</h1></div></div><div class="checkout-layout"><section><div id="checkout-items" class="card"></div><form id="order-form" class="card form-card"><h2>Customer details</h2><p>Fill this in, then send the order details to Homey Cafe.</p><label>Name<input id="customer-name" required placeholder="Your name"></label><label>Phone / WhatsApp<input id="customer-phone" required placeholder="01X-XXXXXXX"></label><label>Delivery address & Prefered delivery time<textarea id="customer-address" required rows="3" placeholder="Your delivery address & prefered delivery time"></textarea></label><label>Notes<textarea id="customer-notes" rows="2" placeholder="Optional"></textarea></label></form></section>
-<aside><div class="card payment-card"><p class="eyebrow">PAYMENT</p><h2>Pay by TNG / bank transfer</h2><p>After confirming your order, make payment using the QR code or bank details below.</p><div class="qr"><img src="images/tng-qr.png" alt="TNG QR code" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div><b>YOUR TNG QR</b><span>Replace assets/tng-qr.png with your actual QR image.</span></div></div><div class="bank"><b>Bank transfer</b><span>Bank: MAYBANK</span><span>Account name: Allan Thew Yeung Hui</span><span>Account no.: 5123 3431 5581</span></div><label>Payment reference / last 4 digits<input id="payment-ref" placeholder="e.g. 1234"></label><div class="total"><span>Total</span><b id="checkout-total">RM0.00</b></div><button id="send-order" class="primary-btn full" type="button">Create order message</button><button id="copy-order" class="secondary-btn full" type="button">Copy order details</button><p id="checkout-status" class="status"></p><small>Set your WhatsApp number in <code>script.js</code> to open a ready-made WhatsApp order message.</small></div></aside></div></main>
-<footer><div class="container footer-inner"><div><strong>Homey cafe</strong><span>Restaurant in your fridge.</span></div><a class="secondary-btn" href="index.html">Continue shopping</a></div></footer><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Checkout — Homey Cafe</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="site-header">
+
+    <div class="container nav">
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+        <span>Homey</span>
+        <small>cafe</small>
+      </a>
+
+
+      <a
+        class="cart-link"
+        href="index.html"
+      >
+        ← Back to menu
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main class="checkout-page container">
+
+
+    <div class="section-heading">
+
+      <div>
+
+        <p class="eyebrow">
+          CHECKOUT
+        </p>
+
+        <h1>
+          Your order
+        </h1>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="checkout-layout">
+
+
+      <!-- ===================================================
+           LEFT COLUMN
+           =================================================== -->
+
+      <section>
+
+
+        <!-- CART ITEMS -->
+
+        <div
+          id="checkout-items"
+          class="card"
+        >
+        </div>
+
+
+
+        <!-- CUSTOMER DETAILS -->
+
+        <form
+          id="order-form"
+          class="card form-card"
+        >
+
+          <h2>
+            Customer details
+          </h2>
+
+          <p>
+            Fill this in, then send the order details to
+            Homey Cafe. We will confirm the delivery fee
+            before payment.
+          </p>
+
+
+          <label>
+
+            Name
+
+            <input
+              id="customer-name"
+              required
+              placeholder="Your name"
+            >
+
+          </label>
+
+
+          <label>
+
+            Phone / WhatsApp
+
+            <input
+              id="customer-phone"
+              required
+              placeholder="01X-XXXXXXX"
+            >
+
+          </label>
+
+
+          <label>
+
+            Delivery address
+
+            <textarea
+              id="customer-address"
+              required
+              rows="4"
+              placeholder="Your delivery address"
+            ></textarea>
+
+          </label>
+
+
+          <label>
+
+            Notes
+
+            <textarea
+              id="customer-notes"
+              rows="2"
+              placeholder="Optional"
+            ></textarea>
+
+          </label>
+
+        </form>
+
+
+      </section>
+
+
+
+      <!-- ===================================================
+           RIGHT COLUMN
+           =================================================== -->
+
+      <aside>
+
+
+        <!-- ORDER TOTAL -->
+
+        <div class="card payment-card">
+
+
+          <p class="eyebrow">
+            ORDER TOTAL
+          </p>
+
+
+          <div
+            class="total-row"
+            style="
+              display:flex;
+              justify-content:space-between;
+              margin-bottom:12px;
+            "
+          >
+
+            <span>
+              Food subtotal
+            </span>
+
+            <b id="checkout-subtotal">
+              RM0.00
+            </b>
+
+          </div>
+
+
+          <div
+            class="total-row"
+            style="
+              display:flex;
+              justify-content:space-between;
+              margin-bottom:12px;
+            "
+          >
+
+            <span>
+              Delivery
+            </span>
+
+            <b>
+              To be confirmed
+            </b>
+
+          </div>
+
+
+          <div
+            style="
+              border-top:1px solid rgba(0,0,0,0.10);
+              margin:16px 0;
+            "
+          >
+          </div>
+
+
+          <div class="total">
+
+            <span>
+              Total
+            </span>
+
+            <b id="checkout-total">
+              RM0.00 + delivery
+            </b>
+
+          </div>
+
+
+          <p
+            style="
+              margin-top:15px;
+              font-size:14px;
+              line-height:1.6;
+              opacity:0.7;
+            "
+          >
+            Delivery is calculated based on your location
+            and the current courier rate.
+          </p>
+
+
+        </div>
+
+
+
+        <!-- PAYMENT -->
+
+        <div
+          class="card payment-card"
+          style="margin-top:20px;"
+        >
+
+          <p class="eyebrow">
+            PAYMENT
+          </p>
+
+
+          <h2>
+            Payment
+          </h2>
+
+
+          <p>
+            We'll confirm the final delivery fee with you
+            before payment.
+          </p>
+
+
+          <div
+            style="
+              background:rgba(0,0,0,0.04);
+              padding:15px;
+              border-radius:10px;
+              margin:18px 0;
+              line-height:1.6;
+            "
+          >
+
+            <strong>
+              Please do not make payment yet.
+            </strong>
+
+            <br>
+
+            Wait for Homey Cafe to confirm the delivery
+            fee and final order total.
+
+          </div>
+
+
+          <!-- TNG QR -->
+
+          <div class="qr">
+
+            <img
+              src="images/tng-qr.png"
+              alt="TNG QR code"
+              onerror="
+                this.style.display='none';
+                this.nextElementSibling.style.display='block'
+              "
+            >
+
+            <div>
+
+              <b>
+                YOUR TNG QR
+              </b>
+
+              <span>
+                Payment details will be used after
+                the final total has been confirmed.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- BANK DETAILS -->
+
+          <div class="bank">
+
+            <b>
+              Bank transfer
+            </b>
+
+            <span>
+              Bank: MAYBANK
+            </span>
+
+            <span>
+              Account name: Allan Thew Yeung Hui
+            </span>
+
+            <span>
+              Account no.: 5123 3431 5581
+            </span>
+
+          </div>
+
+
+          <button
+            id="send-order"
+            class="primary-btn full"
+            type="button"
+          >
+            Create order message
+          </button>
+
+
+          <button
+            id="copy-order"
+            class="secondary-btn full"
+            type="button"
+          >
+            Copy order details
+          </button>
+
+
+          <p
+            id="checkout-status"
+            class="status"
+          >
+          </p>
+
+
+          <small>
+
+            Your order message will include your food
+            subtotal and delivery address. We will
+            confirm the delivery charge before payment.
+
+          </small>
+
+
+        </div>
+
+
+      </aside>
+
+
+    </div>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+
+        <strong>
+          Homey cafe
+        </strong>
+
+        <span>
+          Restaurant in your fridge.
+        </span>
+
+      </div>
+
+
+      <a
+        class="secondary-btn"
+        href="index.html"
+      >
+        Continue shopping
+      </a>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

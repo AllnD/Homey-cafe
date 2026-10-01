@@ -3,7 +3,9 @@
    Main JavaScript
    ========================================================= */
 
+
 const WHATSAPP_NUMBER = "60129313052";
+
 
 
 /* =========================================================
@@ -16,14 +18,14 @@ const PRODUCTS = [
     id: "nasi-lemak",
     name: "Nasi Lemak with Malaysian Curry",
     description: "Malaysian chicken curry, omelette egg, stir fry vegetables.",
-    price: 18.80,
+    price: 30,
     image: "images/spicy.jpg"
   },
 
   {
     id: "dakgalbi-bento",
     name: "Dakgalbi Bento",
-    description: "Korean-style chicken with stir-fried kimchi and fish cake served with seaweed soup.",
+    description: "Korean-style chicken with stir-fried vegetables.",
     price: 20,
     image: "images/dakglbi.png"
   },
@@ -32,23 +34,23 @@ const PRODUCTS = [
     id: "japanese-curry",
     name: "Japanese Curry Bento",
     description: "Main:Japanese curry chicken with potato and carrot. Side: Brocolli, tamagoyaki,mayo tunacorn",
-    price: 20,
+    price: 25,
     image: "images/japanese.png"
   },
 
   {
     id: "paprika-chicken",
-    name: "Hungarian Paprika Spaghetti with Roast Chicken",
+    name: "Hungarian Paprika Chicken",
     description: "Roasted chicken with paprika vegetable spaghetti.",
-    price: 20,
+    price: 22,
     image: "images/paprika.png"
   },
 
   {
-    id: "soy-chicken",
-    name: "Soy Sauce Chicken",
-    description: "Soy chicken, baked beans, stri fry vege and omellette eggs.",
-    price: 18.80,
+    id: "tuna-corn",
+    name: "Tuna Corn Bento",
+    description: "Tuna, sweet corn, egg roll and broccoli.",
+    price: 21,
     image: "images/tuna.jpeg"
   },
 
@@ -111,8 +113,12 @@ const PRODUCTS = [
 ];
 
 
+
 /* =========================================================
    BUNDLES
+
+   Change bundle prices HERE.
+   The checkout will use these prices automatically.
    ========================================================= */
 
 const BUNDLES = [
@@ -198,11 +204,12 @@ const BUNDLES = [
 ];
 
 
+
 /* =========================================================
    CART STORAGE
    ========================================================= */
 
-const getCart = () => {
+function getCart() {
 
   try {
 
@@ -210,13 +217,16 @@ const getCart = () => {
       localStorage.getItem("homeyCart")
     ) || {};
 
-  } catch {
+  }
+
+  catch {
 
     return {};
 
   }
 
-};
+}
+
 
 
 function saveCart(cart) {
@@ -231,11 +241,13 @@ function saveCart(cart) {
 }
 
 
+
 function money(n) {
 
-  return `RM${n.toFixed(2)}`;
+  return `RM${Number(n).toFixed(2)}`;
 
 }
+
 
 
 /* =========================================================
@@ -249,19 +261,24 @@ function updateCount() {
 
   if (!element) return;
 
+
   const cart =
     getCart();
+
 
   const count =
     Object.values(cart).reduce(
       (total, quantity) =>
-        total + quantity,
+        total + Number(quantity),
       0
     );
 
-  element.textContent = count;
+
+  element.textContent =
+    count;
 
 }
+
 
 
 /* =========================================================
@@ -274,6 +291,7 @@ function addToCart(id) {
     PRODUCTS.find(
       p => p.id === id
     );
+
 
   if (!product) {
 
@@ -290,6 +308,7 @@ function addToCart(id) {
   const cart =
     getCart();
 
+
   cart[id] =
     (cart[id] || 0) + 1;
 
@@ -304,6 +323,7 @@ function addToCart(id) {
 }
 
 
+
 /* =========================================================
    ADD BUNDLE TO CART
    ========================================================= */
@@ -314,6 +334,7 @@ function addBundleToCart(id) {
     BUNDLES.find(
       b => b.id === id
     );
+
 
   if (!bundle) {
 
@@ -330,16 +351,6 @@ function addBundleToCart(id) {
   const cart =
     getCart();
 
-
-  /*
-     Bundle cart IDs are stored separately
-     from individual product IDs.
-
-     Example:
-
-     bundle:bundle-1
-     bundle:bundle-2
-  */
 
   const cartId =
     `bundle:${bundle.id}`;
@@ -359,16 +370,12 @@ function addBundleToCart(id) {
 }
 
 
+
 /* =========================================================
    IDENTIFY CART ITEM
    ========================================================= */
 
 function getCartItem(id) {
-
-
-  /* -------------------------
-     BUNDLE
-     ------------------------- */
 
   if (
     id.startsWith("bundle:")
@@ -410,9 +417,6 @@ function getCartItem(id) {
   }
 
 
-  /* -------------------------
-     INDIVIDUAL PRODUCT
-     ------------------------- */
 
   const product =
     PRODUCTS.find(
@@ -444,6 +448,47 @@ function getCartItem(id) {
 }
 
 
+
+/* =========================================================
+   CALCULATE FOOD SUBTOTAL
+   ========================================================= */
+
+function calculateSubtotal() {
+
+  const cart =
+    getCart();
+
+
+  let subtotal = 0;
+
+
+  Object.keys(cart).forEach(
+    id => {
+
+      const item =
+        getCartItem(id);
+
+
+      if (!item) return;
+
+
+      const quantity =
+        Number(cart[id]) || 0;
+
+
+      subtotal +=
+        item.price * quantity;
+
+    }
+  );
+
+
+  return subtotal;
+
+}
+
+
+
 /* =========================================================
    CHANGE QUANTITY
    ========================================================= */
@@ -470,9 +515,11 @@ function changeQty(id, difference) {
 
   saveCart(cart);
 
+
   renderCheckout();
 
 }
+
 
 
 /* =========================================================
@@ -490,9 +537,11 @@ function removeItem(id) {
 
   saveCart(cart);
 
+
   renderCheckout();
 
 }
+
 
 
 /* =========================================================
@@ -553,6 +602,7 @@ function renderMenu() {
 }
 
 
+
 /* =========================================================
    RENDER DYNAMIC BUNDLES
    ========================================================= */
@@ -605,7 +655,7 @@ function renderBundles() {
 
 
               <div class="bundle-price">
-                RM${bundle.price}
+                ${money(bundle.price)}
               </div>
 
             </div>
@@ -648,7 +698,7 @@ function renderBundles() {
             <div class="bundle-footer">
 
               <span>
-                3 meal sets · RM${bundle.price}
+                3 meal sets · ${money(bundle.price)}
               </span>
 
 
@@ -672,6 +722,7 @@ function renderBundles() {
 }
 
 
+
 /* =========================================================
    RENDER CHECKOUT
    ========================================================= */
@@ -684,6 +735,12 @@ function renderCheckout() {
     );
 
 
+  const subtotalElement =
+    document.getElementById(
+      "checkout-subtotal"
+    );
+
+
   const totalElement =
     document.getElementById(
       "checkout-total"
@@ -692,6 +749,7 @@ function renderCheckout() {
 
   if (
     !wrapper ||
+    !subtotalElement ||
     !totalElement
   ) {
 
@@ -707,10 +765,6 @@ function renderCheckout() {
   const ids =
     Object.keys(cart);
 
-
-  /* -------------------------
-     EMPTY CART
-     ------------------------- */
 
   if (!ids.length) {
 
@@ -734,8 +788,12 @@ function renderCheckout() {
     `;
 
 
-    totalElement.textContent =
+    subtotalElement.textContent =
       money(0);
+
+
+    totalElement.textContent =
+      "RM0.00 + delivery";
 
 
     return;
@@ -743,7 +801,8 @@ function renderCheckout() {
   }
 
 
-  let total = 0;
+
+  let subtotal = 0;
 
 
   wrapper.innerHTML =
@@ -755,11 +814,6 @@ function renderCheckout() {
           getCartItem(id);
 
 
-        /*
-           If an old/invalid cart item
-           exists, simply ignore it.
-        */
-
         if (!item) {
 
           return "";
@@ -768,7 +822,7 @@ function renderCheckout() {
 
 
         const quantity =
-          cart[id];
+          Number(cart[id]);
 
 
         const lineTotal =
@@ -776,12 +830,14 @@ function renderCheckout() {
           quantity;
 
 
-        total += lineTotal;
+        subtotal +=
+          lineTotal;
 
 
-        /* =================================================
+
+        /* ===============================================
            BUNDLE
-           ================================================= */
+           =============================================== */
 
         if (
           item.type === "bundle"
@@ -841,6 +897,7 @@ function renderCheckout() {
               </div>
 
 
+
               <div class="qty">
 
                 <button
@@ -870,6 +927,7 @@ function renderCheckout() {
               </div>
 
 
+
               <div>
 
                 <div class="order-price">
@@ -894,9 +952,10 @@ function renderCheckout() {
         }
 
 
-        /* =================================================
+
+        /* ===============================================
            INDIVIDUAL PRODUCT
-           ================================================= */
+           =============================================== */
 
         return `
 
@@ -914,6 +973,7 @@ function renderCheckout() {
               </small>
 
             </div>
+
 
 
             <div class="qty">
@@ -945,6 +1005,7 @@ function renderCheckout() {
             </div>
 
 
+
             <div>
 
               <div class="order-price">
@@ -970,10 +1031,20 @@ function renderCheckout() {
     ).join("");
 
 
+
+  /* =======================================================
+     UPDATE TOTALS
+     ======================================================= */
+
+  subtotalElement.textContent =
+    money(subtotal);
+
+
   totalElement.textContent =
-    money(total);
+    `${money(subtotal)} + delivery`;
 
 }
+
 
 
 /* =========================================================
@@ -997,7 +1068,7 @@ function message() {
   }
 
 
-  let total = 0;
+  let subtotal = 0;
 
 
   const lines = [];
@@ -1019,7 +1090,7 @@ function message() {
 
 
       const quantity =
-        cart[id];
+        Number(cart[id]);
 
 
       const lineTotal =
@@ -1027,12 +1098,14 @@ function message() {
         quantity;
 
 
-      total += lineTotal;
+      subtotal +=
+        lineTotal;
 
 
-      /* =================================================
-         BUNDLE MESSAGE
-         ================================================= */
+
+      /* ===============================================
+         BUNDLE
+         =============================================== */
 
       if (
         item.type === "bundle"
@@ -1069,9 +1142,10 @@ function message() {
       }
 
 
-      /* =================================================
-         INDIVIDUAL PRODUCT MESSAGE
-         ================================================= */
+
+      /* ===============================================
+         INDIVIDUAL PRODUCT
+         =============================================== */
 
       else {
 
@@ -1085,9 +1159,10 @@ function message() {
   );
 
 
-  /* =====================================================
-     CUSTOMER DETAILS
-     ===================================================== */
+
+  /* =======================================================
+     GET CUSTOMER DETAILS
+     ======================================================= */
 
   const value =
     id =>
@@ -1096,6 +1171,11 @@ function message() {
         ?.value
         .trim() || "";
 
+
+
+  /* =======================================================
+     WHATSAPP MESSAGE
+     ======================================================= */
 
   return [
 
@@ -1107,7 +1187,11 @@ function message() {
 
     "",
 
-    `TOTAL: ${money(total)}`,
+    `FOOD SUBTOTAL: ${money(subtotal)}`,
+
+    "DELIVERY: TO BE CONFIRMED",
+
+    `TOTAL: ${money(subtotal)} + delivery`,
 
     "",
 
@@ -1117,13 +1201,16 @@ function message() {
 
     `Delivery address: ${value("customer-address")}`,
 
-    `Payment reference: ${value("payment-ref")}`,
+    `Notes: ${value("customer-notes") || "-"}`,
 
-    `Notes: ${value("customer-notes") || "-"}`
+    "",
+
+    "Please confirm the delivery fee and final total before payment."
 
   ].join("\n");
 
 }
+
 
 
 /* =========================================================
@@ -1158,6 +1245,7 @@ function valid() {
       "Your cart is empty."
     );
 
+
     return false;
 
   }
@@ -1166,6 +1254,7 @@ function valid() {
   return true;
 
 }
+
 
 
 /* =========================================================
@@ -1188,6 +1277,7 @@ function status(messageText) {
   }
 
 }
+
 
 
 /* =========================================================
@@ -1232,6 +1322,7 @@ function createOrder() {
 }
 
 
+
 /* =========================================================
    COPY ORDER DETAILS
    ========================================================= */
@@ -1257,7 +1348,7 @@ async function copyOrder() {
 
 
     status(
-      "Order details copied. Paste them into WhatsApp or email."
+      "Order details copied. Paste them into WhatsApp."
     );
 
   }
@@ -1271,6 +1362,7 @@ async function copyOrder() {
   }
 
 }
+
 
 
 /* =========================================================

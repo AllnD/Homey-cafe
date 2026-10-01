@@ -38,16 +38,16 @@ const PRODUCTS = [
 
   {
     id: "paprika-chicken",
-    name: "Hungarian Paprika Chicken",
+    name: "Hungarian Paprika Spaghetti with Roast Chicken",
     description: "Roasted chicken with paprika vegetable spaghetti.",
     price: 22,
     image: "images/paprika.png"
   },
 
   {
-    id: "tuna-corn",
-    name: "Tuna Corn Bento",
-    description: "Tuna, sweet corn, egg roll and broccoli.",
+    id: "soy-chicken",
+    name: "Soy Sauce Chicken",
+    description: "Soy chicken, baked beans, stri fry vege and omellette eggs.",
     price: 21,
     image: "images/tuna.jpeg"
   },

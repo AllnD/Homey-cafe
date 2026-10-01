@@ -127,7 +127,7 @@ const BUNDLES = [
       "dakgalbi-bento",
       "japanese-curry"
     ],
-    price: 60
+    price: 40
   },
 
   {

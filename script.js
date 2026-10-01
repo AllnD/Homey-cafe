@@ -23,7 +23,7 @@ const PRODUCTS = [
   {
     id: "dakgalbi-bento",
     name: "Dakgalbi Bento",
-    description: "Korean-style chicken with stir-fried vegetables.",
+    description: "Korean-style chicken with stir-fried kimchi and fish cake served with seaweed soup.",
     price: 20,
     image: "images/dakglbi.png"
   },

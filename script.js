@@ -117,8 +117,7 @@ const PRODUCTS = [
 /* =========================================================
    BUNDLES
 
-   Change bundle prices HERE.
-   The checkout will use these prices automatically.
+   CHANGE BUNDLE PRICES HERE ONLY.
    ========================================================= */
 
 const BUNDLES = [
@@ -213,13 +212,36 @@ function getCart() {
 
   try {
 
-    return JSON.parse(
-      localStorage.getItem("homeyCart")
-    ) || {};
+    const saved =
+      localStorage.getItem("homeyCart");
+
+    if (!saved) {
+      return {};
+    }
+
+    const cart =
+      JSON.parse(saved);
+
+    if (
+      !cart ||
+      typeof cart !== "object" ||
+      Array.isArray(cart)
+    ) {
+
+      return {};
+
+    }
+
+    return cart;
 
   }
 
-  catch {
+  catch (error) {
+
+    console.error(
+      "Could not read cart:",
+      error
+    );
 
     return {};
 
@@ -242,9 +264,9 @@ function saveCart(cart) {
 
 
 
-function money(n) {
+function money(number) {
 
-  return `RM${Number(n).toFixed(2)}`;
+  return `RM${Number(number).toFixed(2)}`;
 
 }
 
@@ -257,9 +279,14 @@ function money(n) {
 function updateCount() {
 
   const element =
-    document.getElementById("cart-count");
+    document.getElementById(
+      "cart-count"
+    );
 
-  if (!element) return;
+
+  if (!element) {
+    return;
+  }
 
 
   const cart =
@@ -268,8 +295,12 @@ function updateCount() {
 
   const count =
     Object.values(cart).reduce(
-      (total, quantity) =>
-        total + Number(quantity),
+      (total, quantity) => {
+
+        return total +
+          (Number(quantity) || 0);
+
+      },
       0
     );
 
@@ -289,7 +320,8 @@ function addToCart(id) {
 
   const product =
     PRODUCTS.find(
-      p => p.id === id
+      product =>
+        product.id === id
     );
 
 
@@ -310,7 +342,7 @@ function addToCart(id) {
 
 
   cart[id] =
-    (cart[id] || 0) + 1;
+    (Number(cart[id]) || 0) + 1;
 
 
   saveCart(cart);
@@ -332,7 +364,8 @@ function addBundleToCart(id) {
 
   const bundle =
     BUNDLES.find(
-      b => b.id === id
+      bundle =>
+        bundle.id === id
     );
 
 
@@ -357,7 +390,7 @@ function addBundleToCart(id) {
 
 
   cart[cartId] =
-    (cart[cartId] || 0) + 1;
+    (Number(cart[cartId]) || 0) + 1;
 
 
   saveCart(cart);
@@ -377,6 +410,11 @@ function addBundleToCart(id) {
 
 function getCartItem(id) {
 
+
+  /* -------------------------------------------------------
+     BUNDLE
+     ------------------------------------------------------- */
+
   if (
     id.startsWith("bundle:")
   ) {
@@ -389,7 +427,8 @@ function getCartItem(id) {
 
     const bundle =
       BUNDLES.find(
-        b => b.id === bundleId
+        bundle =>
+          bundle.id === bundleId
       );
 
 
@@ -408,7 +447,7 @@ function getCartItem(id) {
 
       name: bundle.name,
 
-      price: bundle.price,
+      price: Number(bundle.price),
 
       bundle: bundle
 
@@ -418,9 +457,14 @@ function getCartItem(id) {
 
 
 
+  /* -------------------------------------------------------
+     INDIVIDUAL PRODUCT
+     ------------------------------------------------------- */
+
   const product =
     PRODUCTS.find(
-      p => p.id === id
+      product =>
+        product.id === id
     );
 
 
@@ -439,7 +483,7 @@ function getCartItem(id) {
 
     name: product.name,
 
-    price: product.price,
+    price: Number(product.price),
 
     product: product
 
@@ -469,7 +513,9 @@ function calculateSubtotal() {
         getCartItem(id);
 
 
-      if (!item) return;
+      if (!item) {
+        return;
+      }
 
 
       const quantity =
@@ -493,22 +539,35 @@ function calculateSubtotal() {
    CHANGE QUANTITY
    ========================================================= */
 
-function changeQty(id, difference) {
+function changeQty(
+  id,
+  difference
+) {
 
   const cart =
     getCart();
 
 
-  cart[id] =
-    (cart[id] || 0) +
-    difference;
+  const current =
+    Number(cart[id]) || 0;
+
+
+  const newQuantity =
+    current + difference;
 
 
   if (
-    cart[id] <= 0
+    newQuantity <= 0
   ) {
 
     delete cart[id];
+
+  }
+
+  else {
+
+    cart[id] =
+      newQuantity;
 
   }
 
@@ -545,7 +604,7 @@ function removeItem(id) {
 
 
 /* =========================================================
-   RENDER INDIVIDUAL MENU
+   RENDER MENU
    ========================================================= */
 
 function renderMenu() {
@@ -556,38 +615,40 @@ function renderMenu() {
     );
 
 
-  if (!grid) return;
+  if (!grid) {
+    return;
+  }
 
 
   grid.innerHTML =
     PRODUCTS.map(
-      p => `
+      product => `
 
         <article class="menu-card">
 
           <img
-            src="${p.image}"
-            alt="${p.name}"
+            src="${product.image}"
+            alt="${product.name}"
             class="menu-image"
           >
 
           <div class="menu-info">
 
             <h3>
-              ${p.name}
+              ${product.name}
             </h3>
 
             <p>
-              ${p.description}
+              ${product.description}
             </p>
 
             <div class="price">
-              ${money(p.price)}
+              ${money(product.price)}
             </div>
 
             <button
               class="add-btn"
-              onclick="addToCart('${p.id}')"
+              onclick="addToCart('${product.id}')"
             >
               ADD TO CART
             </button>
@@ -615,7 +676,9 @@ function renderBundles() {
     );
 
 
-  if (!grid) return;
+  if (!grid) {
+    return;
+  }
 
 
   grid.innerHTML =
@@ -628,7 +691,8 @@ function renderBundles() {
             .map(
               id =>
                 PRODUCTS.find(
-                  p => p.id === id
+                  product =>
+                    product.id === id
                 )
             )
             .filter(Boolean);
@@ -637,7 +701,6 @@ function renderBundles() {
         return `
 
           <article class="bundle-card">
-
 
             <div class="bundle-header">
 
@@ -711,7 +774,6 @@ function renderBundles() {
 
             </div>
 
-
           </article>
 
         `;
@@ -747,6 +809,11 @@ function renderCheckout() {
     );
 
 
+  /*
+     If this is not the checkout page,
+     there is nothing to render.
+  */
+
   if (
     !wrapper ||
     !subtotalElement ||
@@ -765,6 +832,11 @@ function renderCheckout() {
   const ids =
     Object.keys(cart);
 
+
+
+  /* =======================================================
+     EMPTY CART
+     ======================================================= */
 
   if (!ids.length) {
 
@@ -805,7 +877,7 @@ function renderCheckout() {
   let subtotal = 0;
 
 
-  wrapper.innerHTML =
+  const html =
     ids.map(
       id => {
 
@@ -822,12 +894,11 @@ function renderCheckout() {
 
 
         const quantity =
-          Number(cart[id]);
+          Number(cart[id]) || 0;
 
 
         const lineTotal =
-          item.price *
-          quantity;
+          item.price * quantity;
 
 
         subtotal +=
@@ -835,9 +906,9 @@ function renderCheckout() {
 
 
 
-        /* ===============================================
-           BUNDLE
-           =============================================== */
+        /* =================================================
+           BUNDLE ITEM
+           ================================================= */
 
         if (
           item.type === "bundle"
@@ -849,8 +920,8 @@ function renderCheckout() {
               .map(
                 mealId =>
                   PRODUCTS.find(
-                    p =>
-                      p.id === mealId
+                    product =>
+                      product.id === mealId
                   )
               )
               .filter(Boolean);
@@ -860,13 +931,11 @@ function renderCheckout() {
 
             <div class="order-row">
 
-
               <div>
 
                 <div class="order-name">
                   ${item.name} Bundle
                 </div>
-
 
                 <small>
                   ${money(item.price)} each
@@ -897,14 +966,11 @@ function renderCheckout() {
               </div>
 
 
-
               <div class="qty">
 
                 <button
-                  onclick="changeQty(
-                    '${id}',
-                    -1
-                  )"
+                  type="button"
+                  onclick="changeQty('${id}', -1)"
                 >
                   −
                 </button>
@@ -916,16 +982,13 @@ function renderCheckout() {
 
 
                 <button
-                  onclick="changeQty(
-                    '${id}',
-                    1
-                  )"
+                  type="button"
+                  onclick="changeQty('${id}', 1)"
                 >
                   +
                 </button>
 
               </div>
-
 
 
               <div>
@@ -936,6 +999,7 @@ function renderCheckout() {
 
 
                 <button
+                  type="button"
                   class="remove"
                   onclick="removeItem('${id}')"
                 >
@@ -943,7 +1007,6 @@ function renderCheckout() {
                 </button>
 
               </div>
-
 
             </div>
 
@@ -953,14 +1016,13 @@ function renderCheckout() {
 
 
 
-        /* ===============================================
+        /* =================================================
            INDIVIDUAL PRODUCT
-           =============================================== */
+           ================================================= */
 
         return `
 
           <div class="order-row">
-
 
             <div>
 
@@ -975,14 +1037,11 @@ function renderCheckout() {
             </div>
 
 
-
             <div class="qty">
 
               <button
-                onclick="changeQty(
-                  '${id}',
-                  -1
-                )"
+                type="button"
+                onclick="changeQty('${id}', -1)"
               >
                 −
               </button>
@@ -994,16 +1053,13 @@ function renderCheckout() {
 
 
               <button
-                onclick="changeQty(
-                  '${id}',
-                  1
-                )"
+                type="button"
+                onclick="changeQty('${id}', 1)"
               >
                 +
               </button>
 
             </div>
-
 
 
             <div>
@@ -1014,6 +1070,7 @@ function renderCheckout() {
 
 
               <button
+                type="button"
                 class="remove"
                 onclick="removeItem('${id}')"
               >
@@ -1021,7 +1078,6 @@ function renderCheckout() {
               </button>
 
             </div>
-
 
           </div>
 
@@ -1031,9 +1087,13 @@ function renderCheckout() {
     ).join("");
 
 
+  wrapper.innerHTML =
+    html;
+
+
 
   /* =======================================================
-     UPDATE TOTALS
+     UPDATE ORDER TOTAL
      ======================================================= */
 
   subtotalElement.textContent =
@@ -1083,19 +1143,16 @@ function message() {
 
 
       if (!item) {
-
         return;
-
       }
 
 
       const quantity =
-        Number(cart[id]);
+        Number(cart[id]) || 0;
 
 
       const lineTotal =
-        item.price *
-        quantity;
+        item.price * quantity;
 
 
       subtotal +=
@@ -1103,9 +1160,9 @@ function message() {
 
 
 
-      /* ===============================================
+      /* =================================================
          BUNDLE
-         =============================================== */
+         ================================================= */
 
       if (
         item.type === "bundle"
@@ -1122,8 +1179,8 @@ function message() {
             .map(
               mealId =>
                 PRODUCTS.find(
-                  p =>
-                    p.id === mealId
+                  product =>
+                    product.id === mealId
                 )
             )
             .filter(Boolean);
@@ -1143,9 +1200,9 @@ function message() {
 
 
 
-      /* ===============================================
+      /* =================================================
          INDIVIDUAL PRODUCT
-         =============================================== */
+         ================================================= */
 
       else {
 
@@ -1161,20 +1218,29 @@ function message() {
 
 
   /* =======================================================
-     GET CUSTOMER DETAILS
+     CUSTOMER DETAILS
      ======================================================= */
 
   const value =
-    id =>
-      document
-        .getElementById(id)
-        ?.value
-        .trim() || "";
+    id => {
+
+      const element =
+        document.getElementById(id);
+
+
+      if (!element) {
+        return "";
+      }
+
+
+      return element.value.trim();
+
+    };
 
 
 
   /* =======================================================
-     WHATSAPP MESSAGE
+     FINAL WHATSAPP MESSAGE
      ======================================================= */
 
   return [
@@ -1235,10 +1301,12 @@ function valid() {
   }
 
 
+  const cart =
+    getCart();
+
+
   if (
-    !Object.keys(
-      getCart()
-    ).length
+    !Object.keys(cart).length
   ) {
 
     status(
@@ -1287,14 +1355,23 @@ function status(messageText) {
 function createOrder() {
 
   if (!valid()) {
-
     return;
-
   }
 
 
   const orderMessage =
     message();
+
+
+  if (!orderMessage) {
+
+    status(
+      "Unable to create the order."
+    );
+
+    return;
+
+  }
 
 
   if (WHATSAPP_NUMBER) {
@@ -1330,9 +1407,7 @@ function createOrder() {
 async function copyOrder() {
 
   if (!valid()) {
-
     return;
-
   }
 
 

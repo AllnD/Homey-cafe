@@ -193,11 +193,11 @@
 
 
           <div
-            class="total-row"
             style="
               display:flex;
               justify-content:space-between;
-              margin-bottom:12px;
+              align-items:center;
+              margin-bottom:14px;
             "
           >
 
@@ -205,19 +205,19 @@
               Food subtotal
             </span>
 
-            <b id="checkout-subtotal">
+            <strong id="checkout-subtotal">
               RM0.00
-            </b>
+            </strong>
 
           </div>
 
 
           <div
-            class="total-row"
             style="
               display:flex;
               justify-content:space-between;
-              margin-bottom:12px;
+              align-items:center;
+              margin-bottom:18px;
             "
           >
 
@@ -225,9 +225,9 @@
               Delivery
             </span>
 
-            <b>
+            <strong>
               To be confirmed
-            </b>
+            </strong>
 
           </div>
 
@@ -235,35 +235,35 @@
           <div
             style="
               border-top:1px solid rgba(0,0,0,0.10);
-              margin:16px 0;
+              padding-top:20px;
             "
           >
-          </div>
 
+            <div class="total">
 
-          <div class="total">
+              <span>
+                Total
+              </span>
 
-            <span>
-              Total
-            </span>
+              <b id="checkout-total">
+                RM0.00 + delivery
+              </b>
 
-            <b id="checkout-total">
-              RM0.00 + delivery
-            </b>
+            </div>
 
           </div>
 
 
           <p
             style="
-              margin-top:15px;
+              margin-top:16px;
               font-size:14px;
               line-height:1.6;
               opacity:0.7;
             "
           >
-            Delivery is calculated based on your location
-            and the current courier rate.
+            Delivery is calculated separately based on
+            your location and the current courier rate.
           </p>
 
 
@@ -271,7 +271,7 @@
 
 
 
-        <!-- PAYMENT -->
+        <!-- PAYMENT INFORMATION -->
 
         <div
           class="card payment-card"
@@ -297,9 +297,9 @@
           <div
             style="
               background:rgba(0,0,0,0.04);
-              padding:15px;
+              padding:18px;
               border-radius:10px;
-              margin:18px 0;
+              margin:20px 0;
               line-height:1.6;
             "
           >
@@ -310,60 +310,8 @@
 
             <br>
 
-            Wait for Homey Cafe to confirm the delivery
-            fee and final order total.
-
-          </div>
-
-
-          <!-- TNG QR -->
-
-          <div class="qr">
-
-            <img
-              src="images/tng-qr.png"
-              alt="TNG QR code"
-              onerror="
-                this.style.display='none';
-                this.nextElementSibling.style.display='block'
-              "
-            >
-
-            <div>
-
-              <b>
-                YOUR TNG QR
-              </b>
-
-              <span>
-                Payment details will be used after
-                the final total has been confirmed.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <!-- BANK DETAILS -->
-
-          <div class="bank">
-
-            <b>
-              Bank transfer
-            </b>
-
-            <span>
-              Bank: MAYBANK
-            </span>
-
-            <span>
-              Account name: Allan Thew Yeung Hui
-            </span>
-
-            <span>
-              Account no.: 5123 3431 5581
-            </span>
+            After we receive your order, we will check
+            the delivery fee and confirm your final total.
 
           </div>
 
@@ -394,11 +342,10 @@
 
 
           <small>
-
             Your order message will include your food
-            subtotal and delivery address. We will
-            confirm the delivery charge before payment.
-
+            subtotal and delivery address. Payment details
+            will be provided after the final delivery fee
+            has been confirmed.
           </small>
 
 

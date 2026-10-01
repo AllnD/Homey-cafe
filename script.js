@@ -40,23 +40,23 @@ const PRODUCTS = [
 
   {
     id: "paprika-chicken",
-    name: "Hungarian Paprika Chicken",
+    name: "Hungarian Paprika Spaghetti with Roast Chicken",
     description: "Roasted chicken with paprika vegetable spaghetti.",
     price: 22,
     image: "images/paprika.png"
   },
 
   {
-    id: "tuna-corn",
-    name: "Tuna Corn Bento",
+    id: "Ginger-chicken",
+    name: "Ginger Steam Chicken Bento",
     description: "Tuna, sweet corn, egg roll and broccoli.",
     price: 21,
     image: "images/tuna.jpeg"
   },
 
   {
-    id: "kimchi-chicken",
-    name: "Kimchi Chicken Bento",
+    id: "Soy-chicken",
+    name: "Soy Chicken Bento",
     description: "Savory chicken with cooked kimchi and vegetables.",
     price: 20,
     image: "images/kimchi-chicken.png"
@@ -71,9 +71,9 @@ const PRODUCTS = [
   },
 
   {
-    id: "kimchi-chicken-3",
-    name: "Kimchi Chicken Bento 3",
-    description: "Savory chicken with cooked kimchi and vegetables.",
+    id: "Red-Chicken",
+    name: "Spicy Sweet Chicken Bento",
+    description: "Savory chicken with sweet sauce and vegetables.",
     price: 20,
     image: "images/kimchi-chicken.png"
   },

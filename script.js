@@ -16,7 +16,7 @@ const PRODUCTS = [
     id: "nasi-lemak",
     name: "Nasi Lemak with Malaysian Curry",
     description: "Malaysian chicken curry, omelette egg, stir fry vegetables.",
-    price: 30,
+    price: 18.80,
     image: "images/spicy.jpg"
   },
 
@@ -32,7 +32,7 @@ const PRODUCTS = [
     id: "japanese-curry",
     name: "Japanese Curry Bento",
     description: "Main:Japanese curry chicken with potato and carrot. Side: Brocolli, tamagoyaki,mayo tunacorn",
-    price: 25,
+    price: 20,
     image: "images/japanese.png"
   },
 
@@ -40,7 +40,7 @@ const PRODUCTS = [
     id: "paprika-chicken",
     name: "Hungarian Paprika Spaghetti with Roast Chicken",
     description: "Roasted chicken with paprika vegetable spaghetti.",
-    price: 22,
+    price: 20,
     image: "images/paprika.png"
   },
 
@@ -48,7 +48,7 @@ const PRODUCTS = [
     id: "soy-chicken",
     name: "Soy Sauce Chicken",
     description: "Soy chicken, baked beans, stri fry vege and omellette eggs.",
-    price: 21,
+    price: 18.80,
     image: "images/tuna.jpeg"
   },
 

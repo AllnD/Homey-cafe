@@ -18,7 +18,7 @@ const PRODUCTS = [
     id: "nasi-lemak",
     name: "Nasi Lemak with Malaysian Curry",
     description: "Malaysian chicken curry, omelette egg, stir fry vegetables.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 30,
     image: "images/spicy.jpg"
   },
@@ -27,7 +27,7 @@ const PRODUCTS = [
     id: "dakgalbi-bento",
     name: "Dakgalbi Bento",
     description: "Korean-style chicken with stir-fried vegetables.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/dakglbi.png"
   },
@@ -36,7 +36,7 @@ const PRODUCTS = [
     id: "japanese-curry",
     name: "Japanese Curry Bento",
     description: "Main:Japanese curry chicken with potato and carrot. Side: Brocolli, tamagoyaki,mayo tunacorn",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 25,
     image: "images/japanese.png"
   },
@@ -45,7 +45,7 @@ const PRODUCTS = [
     id: "paprika-chicken",
     name: "Hungarian Paprika Spaghetti with Roast Chicken",
     description: "Roasted chicken with paprika vegetable spaghetti.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 22,
     image: "images/paprika.png"
   },
@@ -54,7 +54,7 @@ const PRODUCTS = [
     id: "Ginger-chicken",
     name: "Ginger Steam Chicken Bento",
     description: "Tuna, sweet corn, egg roll and broccoli.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 21,
     image: "images/tuna.jpeg"
   },
@@ -63,7 +63,7 @@ const PRODUCTS = [
     id: "Soy-chicken",
     name: "Soy Chicken Bento",
     description: "Savory chicken with cooked kimchi and vegetables.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/kimchi-chicken.png"
   },
@@ -72,7 +72,7 @@ const PRODUCTS = [
     id: "kimchi-chicken-2",
     name: "Kimchi Chicken Bento 2",
     description: "Savory chicken with cooked kimchi and vegetables.",
-   reheat: "Microwave and Steaming",
+   reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/kimchi-chicken.png"
   },
@@ -81,7 +81,7 @@ const PRODUCTS = [
     id: "Red-Chicken",
     name: "Spicy Sweet Chicken Bento",
     description: "Savory chicken with sweet sauce and vegetables.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/kimchi-chicken.png"
   },
@@ -90,7 +90,7 @@ const PRODUCTS = [
     id: "kimchi-chicken-4",
     name: "Kimchi Chicken Bento 4",
     description: "Savory chicken with cooked kimchi and vegetables.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/kimchi-chicken.png"
   },
@@ -99,7 +99,7 @@ const PRODUCTS = [
     id: "kimchi-chicken-5",
     name: "Kimchi Chicken Bento 5",
     description: "Savory chicken with cooked kimchi and vegetables.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/kimchi-chicken.png"
   },
@@ -108,7 +108,7 @@ const PRODUCTS = [
     id: "kimchi-chicken-6",
     name: "Kimchi Chicken Bento 6",
     description: "Savory chicken with cooked kimchi and vegetables.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/kimchi-chicken.png"
   },
@@ -117,7 +117,7 @@ const PRODUCTS = [
     id: "kimchi-chicken-7",
     name: "Kimchi Chicken Bento 7",
     description: "Savory chicken with cooked kimchi and vegetables.",
-    reheat: "Microwave and Steaming",
+    reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/kimchi-chicken.png"
   }

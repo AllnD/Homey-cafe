@@ -83,7 +83,7 @@ const PRODUCTS = [
     description: "Savory chicken with sweet sauce and vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
      price: 20,
-    image: "images/spicy.png"
+    image: "images/spicy.jpg"
   },
 
   {

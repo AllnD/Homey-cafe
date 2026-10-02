@@ -20,7 +20,7 @@ const PRODUCTS = [
     description: "Malaysian chicken curry, omelette egg, stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
      price: 30,
-    image: "images/spicy.jpg"
+    image: "images/nasi.png"
   },
 
   {

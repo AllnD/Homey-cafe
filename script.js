@@ -69,9 +69,9 @@ const PRODUCTS = [
   },
 
   {
-    id: "kimchi-chicken-2",
-    name: "Kimchi Chicken Bento 2",
-    description: "Savory chicken with cooked kimchi and vegetables.",
+    id: "variety-box",
+    name: "Variety Party Bento",
+    description: "Fried noodle, tomato beef, chicken potato salad, Omurice.",
    reheat: "Steam recommended. Microwave for convenience",
      price: 20,
     image: "images/kimchi-chicken.png"

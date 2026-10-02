@@ -87,10 +87,10 @@ const PRODUCTS = [
   },
 
   {
-    id: "kimchi-chicken-4",
-    name: "Kimchi Chicken Bento 4",
-    description: "Savory chicken with cooked kimchi and vegetables.",
-    reheat: "Steam recommended. Microwave for convenience",
+    id: "Roast-chicken",
+    name: "Roast Chicken Party Box",
+    description: "Roast chicken chop, potatoes, baked beans, omelette eggs, pea salad,.",
+    reheat: "Microwave Box A and airfry Box B contents",
      price: 20,
     image: "images/kimchi-chicken.png"
   },

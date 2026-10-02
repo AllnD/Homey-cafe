@@ -65,7 +65,7 @@ const PRODUCTS = [
     description: "Savory chicken with cooked kimchi and vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
      price: 20,
-    image: "images/kimchi-chicken.png"
+    image: "images/soy.jpg"
   },
 
   {

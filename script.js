@@ -643,8 +643,9 @@ function renderMenu() {
               ${product.description}
             </p>
 
-<p>${p.description}</p>
-<p class="reheat"><b>Reheat:</b> ${p.reheat}</p>
+            <p class="reheat">
+              <b>Reheat:</b> ${product.reheat}
+            </p>
 
             <div class="price">
               ${money(product.price)}
@@ -665,7 +666,6 @@ function renderMenu() {
     ).join("");
 
 }
-
 
 
 /* =========================================================

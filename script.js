@@ -18,7 +18,8 @@ const PRODUCTS = [
     id: "nasi-lemak",
     name: "Nasi Lemak with Malaysian Curry",
     description: "Malaysian chicken curry, omelette egg, stir fry vegetables.",
-    price: 30,
+    reheat: "Microwave and Steaming"
+     price: 30,
     image: "images/spicy.jpg"
   },
 

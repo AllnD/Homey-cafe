@@ -642,6 +642,8 @@ function renderMenu() {
             src="${product.image}"
             alt="${product.name}"
             class="menu-image"
+             loading="lazy"
+             decoding="async"
           >
 
           <div class="menu-info">

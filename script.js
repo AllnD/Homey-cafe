@@ -56,7 +56,7 @@ const PRODUCTS = [
     description: "Tuna, sweet corn, egg roll and broccoli.",
     reheat: "Steam recommended. Microwave for convenience",
      price: 21,
-    image: "images/tuna.jpeg"
+    image: "images/Steamed.jpeg"
   },
 
   {

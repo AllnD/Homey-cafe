@@ -462,3 +462,30 @@
   }
 
 }
+/* =====================================================
+   MAIN NAVIGATION
+   ===================================================== */
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.main-nav > a:not(.cart-link) {
+  color: var(--brown);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.main-nav > a:not(.cart-link):hover {
+  color: var(--green);
+}
+
+@media (max-width: 520px) {
+
+  .main-nav {
+    gap: 10px;
+  }
+
+}

@@ -37,7 +37,7 @@ const PRODUCTS = [
     name: "Japanese Curry Bento",
     description: "Main:Japanese curry chicken with potato and carrot. Side: Brocolli, tamagoyaki,mayo tunacorn",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 25,
+     price: 18.80,
     image: "images/japanese.png"
   },
 

@@ -88,7 +88,7 @@ const PRODUCTS = [
 
   {
     id: "Roast-chicken",
-    name: "Roast Chicken Party Box",
+    name: "Chicken Chop Set",
     description: "Roast chicken chop, potatoes, baked beans, omelette eggs, pea salad,.",
     reheat: "Microwave Box A and airfry Box B contents",
      price: 20,

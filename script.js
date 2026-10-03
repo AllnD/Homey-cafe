@@ -96,12 +96,12 @@ const PRODUCTS = [
   },
 
   {
-    id: "kimchi-chicken-5",
-    name: "Kimchi Chicken Bento 5",
-    description: "Savory chicken with cooked kimchi and vegetables.",
+    id: "Teriyaki-chicken",
+    name: "Teriyaki Chicken bento",
+    description: "Savory teriyaki chicken with stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 20,
-    image: "images/kimchi-chicken.png"
+     price: 18.8,
+    image: "images/teriyaki.png"
   },
 
   {

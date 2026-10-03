@@ -114,11 +114,11 @@ const PRODUCTS = [
   },
 
   {
-    id: "kimchi-chicken-7",
-    name: "Kimchi Chicken Bento 7",
-    description: "Savory chicken with cooked kimchi and vegetables.",
-    reheat: "Steam recommended. Microwave for convenience",
-     price: 20,
+    id: "taco-beef",
+    name: "Taco Beef Tomato Rice bake",
+    description: "Mexican inspired rice served with signature egg muffin and acar.",
+    reheat: "Microwave to reheat",
+     price: 21.80,
     image: "images/kimchi-chicken.png"
   }
 

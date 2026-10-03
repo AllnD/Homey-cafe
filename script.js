@@ -105,11 +105,11 @@ const PRODUCTS = [
   },
 
   {
-    id: "kimchi-chicken-6",
-    name: "Kimchi Chicken Bento 6",
-    description: "Savory chicken with cooked kimchi and vegetables.",
-    reheat: "Steam recommended. Microwave for convenience",
-     price: 20,
+    id: "herb-chicken",
+    name: "Mediteranean Roasted Herb Chicken",
+    description: "Savory chicken with mediteranean herbs and spices.",
+    reheat: "This meal requires both Microwave and air fryer reheat",
+     price: 21,
     image: "images/kimchi-chicken.png"
   },
 

@@ -62,11 +62,119 @@
     }
 
 
+    /* =====================================================
+       PAYMENT INFO
+       ===================================================== */
+
+    .payment-info {
+      display: none;
+      margin-top: 18px;
+      padding: 20px;
+      background: rgba(0,0,0,0.04);
+      border-radius: 12px;
+      line-height: 1.6;
+    }
+
+
+    .payment-info h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+
+    .payment-method {
+      margin-bottom: 22px;
+    }
+
+
+    .payment-method:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .payment-method strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+
+    .bank-details {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+
+    .bank-details div {
+      margin-bottom: 5px;
+    }
+
+
+    .bank-details div:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .payment-warning {
+      margin-top: 18px;
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.06);
+      font-size: 14px;
+    }
+
+
+    /* =====================================================
+       TNG QR PLACEHOLDER
+       ===================================================== */
+
+    .qr-placeholder {
+      width: 220px;
+      height: 220px;
+      max-width: 100%;
+      margin: 12px auto 0;
+      border: 2px dashed rgba(0,0,0,0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      background: #fff;
+      color: #777;
+    }
+
+
+    .qr-placeholder span {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+
+    .payment-receipt {
+      margin-top: 18px;
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
     @media (max-width: 700px) {
 
       .delivery-schedule {
         grid-template-columns: 1fr;
         gap: 18px;
+      }
+
+
+      .qr-placeholder {
+        width: 200px;
+        height: 200px;
       }
 
     }
@@ -166,12 +274,17 @@
           </h2>
 
           <p>
-            Fill this in, then click " create order message" at the bottom right. We will confirm the delivery fee
-            before payment. 
+            Fill this in, then click "Create order message"
+            at the bottom right. We will confirm the delivery fee
+            before payment.
           </p>
-  <p>
-            Please note order form will reset once you move away from this page. Hence please browse and finalise order before updating the form.
+
+          <p>
+            Please note order form will reset once you move away
+            from this page. Hence please browse and finalise your
+            order before updating the form.
           </p>
+
 
           <!-- NAME -->
 
@@ -329,7 +442,9 @@
       <aside>
 
 
-        <!-- ORDER TOTAL -->
+        <!-- =================================================
+             ORDER TOTAL
+             ================================================= -->
 
         <div class="card payment-card">
 
@@ -418,7 +533,9 @@
 
 
 
-        <!-- PAYMENT INFORMATION -->
+        <!-- =================================================
+             PAYMENT INFORMATION
+             ================================================= -->
 
         <div
           class="card payment-card"
@@ -463,6 +580,8 @@
           </div>
 
 
+          <!-- CREATE ORDER -->
+
           <button
             id="send-order"
             class="primary-btn full"
@@ -472,6 +591,8 @@
           </button>
 
 
+          <!-- COPY ORDER -->
+
           <button
             id="copy-order"
             class="secondary-btn full"
@@ -480,6 +601,152 @@
             Copy order details
           </button>
 
+
+          <!-- PAYMENT INFO BUTTON -->
+
+          <button
+            id="payment-info-button"
+            class="secondary-btn full"
+            type="button"
+            style="margin-top:10px;"
+          >
+            Payment Info
+          </button>
+
+
+
+          <!-- =================================================
+               HIDDEN PAYMENT INFORMATION
+               ================================================= -->
+
+          <div
+            id="payment-info"
+            class="payment-info"
+          >
+
+            <h3>
+              Payment Information
+            </h3>
+
+
+            <p>
+              Once Homey Cafe has confirmed your delivery fee
+              and final total, you may make payment using one
+              of the methods below.
+            </p>
+
+
+
+            <!-- BANK TRANSFER -->
+
+            <div class="payment-method">
+
+              <strong>
+                Bank Transfer
+              </strong>
+
+
+              <div class="bank-details">
+
+                <div>
+                  <strong>Bank:</strong>
+                  YOUR BANK NAME
+                </div>
+
+                <div>
+                  <strong>Account Name:</strong>
+                  HOMEY CAFE
+                </div>
+
+                <div>
+                  <strong>Account Number:</strong>
+                  XXXXXXXX
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- TNG -->
+
+            <div class="payment-method">
+
+              <strong>
+                Touch 'n Go eWallet
+              </strong>
+
+              <p>
+                Scan the QR code below to make payment.
+              </p>
+
+
+              <!--
+                =================================================
+                TNG QR PLACEHOLDER
+
+                Later, replace this entire div with:
+
+                <img
+                  src="images/tng-qr.png"
+                  alt="Touch 'n Go payment QR code"
+                  style="
+                    width:220px;
+                    max-width:100%;
+                    display:block;
+                    margin:12px auto 0;
+                    border-radius:10px;
+                  "
+                >
+
+                =================================================
+              -->
+
+              <div class="qr-placeholder">
+
+                <span>
+                  TNG QR CODE<br>
+                  <br>
+                  PLACEHOLDER<br>
+                  <br>
+                  Replace this box with<br>
+                  your actual TNG QR image.
+                </span>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- PAYMENT WARNING -->
+
+            <div class="payment-warning">
+
+              <strong>
+                Please pay only after your final total
+                has been confirmed by Homey Cafe.
+              </strong>
+
+              <br><br>
+
+              After payment, please send your payment
+              receipt to us via WhatsApp.
+
+            </div>
+
+
+            <p class="payment-receipt">
+              Your payment will be matched against your
+              confirmed order amount.
+            </p>
+
+          </div>
+
+
+
+          <!-- STATUS -->
 
           <p
             id="checkout-status"
@@ -549,6 +816,7 @@
        ===================================================== -->
 
   <script src="script.js"></script>
+
 
 
   <!-- =====================================================
@@ -629,6 +897,68 @@
 
         dateInput.value =
           minimumDate;
+
+      }
+    );
+
+
+
+    /* =====================================================
+       PAYMENT INFO TOGGLE
+       ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        const button =
+          document.getElementById(
+            "payment-info-button"
+          );
+
+
+        const paymentInfo =
+          document.getElementById(
+            "payment-info"
+          );
+
+
+        if (
+          !button ||
+          !paymentInfo
+        ) {
+          return;
+        }
+
+
+        button.addEventListener(
+          "click",
+          function () {
+
+            if (
+              paymentInfo.style.display === "block"
+            ) {
+
+              paymentInfo.style.display =
+                "none";
+
+              button.textContent =
+                "Payment Info";
+
+            }
+
+            else {
+
+              paymentInfo.style.display =
+                "block";
+
+              button.textContent =
+                "Hide Payment Info";
+
+            }
+
+          }
+        );
 
       }
     );

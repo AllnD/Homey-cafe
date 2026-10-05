@@ -19,7 +19,7 @@ const PRODUCTS = [
     name: "Nasi Lemak with Malaysian Curry",
     description: "Malaysian chicken curry, omelette egg, stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 30,
+    price: 30,
     image: "images/nasi.png"
   },
 
@@ -28,7 +28,7 @@ const PRODUCTS = [
     name: "Dakgalbi Bento",
     description: "Korean-style chicken with stir-fried vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 20,
+    price: 20,
     image: "images/dakglbi.png"
   },
 
@@ -37,7 +37,7 @@ const PRODUCTS = [
     name: "Japanese Curry Bento",
     description: "Main:Japanese curry chicken with potato and carrot. Side: Brocolli, tamagoyaki,mayo tunacorn",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 18.80,
+    price: 18.80,
     image: "images/japanese.png"
   },
 
@@ -46,7 +46,7 @@ const PRODUCTS = [
     name: "Hungarian Paprika Spaghetti with Roast Chicken",
     description: "Roasted chicken with paprika vegetable spaghetti.",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 22,
+    price: 22,
     image: "images/paprika.png"
   },
 
@@ -55,7 +55,7 @@ const PRODUCTS = [
     name: "Ginger Steam Chicken Bento",
     description: "Tuna, sweet corn, egg roll and broccoli.",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 21,
+    price: 21,
     image: "images/Steamed.jpg"
   },
 
@@ -64,7 +64,7 @@ const PRODUCTS = [
     name: "Soy Chicken Bento",
     description: "Savory chicken with cooked kimchi and vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 20,
+    price: 20,
     image: "images/soy.png"
   },
 
@@ -72,8 +72,8 @@ const PRODUCTS = [
     id: "variety-box",
     name: "Variety Party Bento",
     description: "Fried noodle, tomato beef, chicken potato salad, Omurice.",
-   reheat: "Steam recommended. Microwave for convenience",
-     price: 20,
+    reheat: "Steam recommended. Microwave for convenience",
+    price: 20,
     image: "images/kimchi-chicken.png"
   },
 
@@ -82,7 +82,7 @@ const PRODUCTS = [
     name: "Spicy Sweet Chicken Bento",
     description: "Savory chicken with sweet sauce and vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 20,
+    price: 20,
     image: "images/spicy.jpg"
   },
 
@@ -91,7 +91,7 @@ const PRODUCTS = [
     name: "Chicken Chop Set",
     description: "Roast chicken chop, potatoes, baked beans, omelette eggs, pea salad,.",
     reheat: "Microwave Box A and airfry Box B contents",
-     price: 20,
+    price: 20,
     image: "images/kimchi-chicken.png"
   },
 
@@ -100,7 +100,7 @@ const PRODUCTS = [
     name: "Teriyaki Chicken bento",
     description: "Savory teriyaki chicken with stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-     price: 18.8,
+    price: 18.8,
     image: "images/teriyaki.png"
   },
 
@@ -109,7 +109,7 @@ const PRODUCTS = [
     name: "Mediteranean Roasted Herb Chicken",
     description: "Savory chicken with mediteranean herbs and spices.",
     reheat: "This meal requires both Microwave and air fryer reheat",
-     price: 21,
+    price: 21,
     image: "images/kimchi-chicken.png"
   },
 
@@ -118,7 +118,7 @@ const PRODUCTS = [
     name: "Taco Beef Tomato Rice bake",
     description: "Mexican inspired rice served with signature egg muffin and acar.",
     reheat: "Microwave to reheat",
-     price: 21.80,
+    price: 21.80,
     image: "images/kimchi-chicken.png"
   }
 
@@ -642,8 +642,8 @@ function renderMenu() {
             src="${product.image}"
             alt="${product.name}"
             class="menu-image"
-             loading="lazy"
-             decoding="async"
+            loading="lazy"
+            decoding="async"
           >
 
           <div class="menu-info">
@@ -679,6 +679,7 @@ function renderMenu() {
     ).join("");
 
 }
+
 
 
 /* =========================================================
@@ -1125,6 +1126,136 @@ function renderCheckout() {
 
 
 /* =========================================================
+   DELIVERY DATE SETUP
+   ========================================================= */
+
+function setupDeliveryDate() {
+
+  const dateInput =
+    document.getElementById(
+      "delivery-date"
+    );
+
+
+  if (!dateInput) {
+    return;
+  }
+
+
+  /*
+     Get today's date from the customer's
+     own device.
+
+     Earliest delivery date:
+     today's date + 3 days.
+  */
+
+  const today =
+    new Date();
+
+
+  const earliestDate =
+    new Date(today);
+
+
+  earliestDate.setDate(
+    earliestDate.getDate() + 3
+  );
+
+
+  /*
+     Convert to YYYY-MM-DD.
+     This is the format required by
+     an HTML date input.
+  */
+
+  const year =
+    earliestDate.getFullYear();
+
+
+  const month =
+    String(
+      earliestDate.getMonth() + 1
+    ).padStart(2, "0");
+
+
+  const day =
+    String(
+      earliestDate.getDate()
+    ).padStart(2, "0");
+
+
+  const minimumDate =
+    `${year}-${month}-${day}`;
+
+
+  /*
+     Prevent customers from selecting
+     a date earlier than 3 days from today.
+  */
+
+  dateInput.min =
+    minimumDate;
+
+
+  /*
+     Automatically select the earliest
+     available delivery date.
+  */
+
+  if (!dateInput.value) {
+
+    dateInput.value =
+      minimumDate;
+
+  }
+
+}
+
+
+
+/* =========================================================
+   FORMAT DELIVERY DATE
+   ========================================================= */
+
+function formatDeliveryDate(dateString) {
+
+  if (!dateString) {
+    return "";
+  }
+
+
+  /*
+     Adding T00:00:00 makes the date
+     local rather than UTC, avoiding
+     timezone-related date changes.
+  */
+
+  const date =
+    new Date(
+      `${dateString}T00:00:00`
+    );
+
+
+  if (isNaN(date.getTime())) {
+    return dateString;
+  }
+
+
+  return date.toLocaleDateString(
+    "en-MY",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+
+/* =========================================================
    CREATE WHATSAPP ORDER MESSAGE
    ========================================================= */
 
@@ -1257,6 +1388,42 @@ function message() {
 
 
   /* =======================================================
+     DELIVERY INFORMATION
+     ======================================================= */
+
+  const deliveryDateRaw =
+    value("delivery-date");
+
+
+  const deliveryDate =
+    formatDeliveryDate(
+      deliveryDateRaw
+    );
+
+
+  const deliveryTime =
+    value("delivery-time");
+
+
+  /*
+     Record the order date as well.
+     This lets you immediately see
+     when the customer placed the order.
+  */
+
+  const orderDate =
+    new Date().toLocaleDateString(
+      "en-MY",
+      {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }
+    );
+
+
+
+  /* =======================================================
      FINAL WHATSAPP MESSAGE
      ======================================================= */
 
@@ -1275,6 +1442,14 @@ function message() {
     "DELIVERY: TO BE CONFIRMED",
 
     `TOTAL: ${money(subtotal)} + delivery`,
+
+    "",
+
+    `Order date: ${orderDate}`,
+
+    `Preferred delivery date: ${deliveryDate || "-"}`,
+
+    `Preferred delivery time: ${deliveryTime || "-"}`,
 
     "",
 
@@ -1472,6 +1647,8 @@ document.addEventListener(
     renderBundles();
 
     renderCheckout();
+
+    setupDeliveryDate();
 
 
     document

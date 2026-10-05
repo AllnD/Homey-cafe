@@ -499,9 +499,8 @@
 
 .about-image {
   display: block;
-  width: auto;
+  width: 100%;
   max-width: 650px;
-  max-height: 450px;
   height: auto;
   margin: 0 auto;
   border-radius: 14px;

@@ -17,6 +17,62 @@
     href="style.css"
   >
 
+  <style>
+
+    /* =====================================================
+       DELIVERY DATE / TIME
+       ===================================================== */
+
+    .delivery-schedule {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 0;
+    }
+
+
+    .schedule-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    .schedule-field label {
+      margin-bottom: 8px;
+    }
+
+
+    .schedule-field input,
+    .schedule-field select {
+      width: 100%;
+      box-sizing: border-box;
+      font: inherit;
+      padding: 15px;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+
+    .schedule-field small {
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      opacity: 0.65;
+    }
+
+
+    @media (max-width: 700px) {
+
+      .delivery-schedule {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 
@@ -116,6 +172,8 @@
           </p>
 
 
+          <!-- NAME -->
+
           <label>
 
             Name
@@ -128,6 +186,8 @@
 
           </label>
 
+
+          <!-- PHONE -->
 
           <label>
 
@@ -142,6 +202,8 @@
           </label>
 
 
+          <!-- DELIVERY ADDRESS -->
+
           <label>
 
             Delivery address
@@ -155,6 +217,90 @@
 
           </label>
 
+
+
+          <!-- =================================================
+               DELIVERY DATE AND TIME
+               ================================================= -->
+
+          <div class="delivery-schedule">
+
+
+            <!-- DELIVERY DATE -->
+
+            <div class="schedule-field">
+
+              <label for="delivery-date">
+                Delivery date
+              </label>
+
+              <input
+                type="date"
+                id="delivery-date"
+                required
+              >
+
+              <small>
+                Earliest available date is 3 days after
+                your order date.
+              </small>
+
+            </div>
+
+
+
+            <!-- DELIVERY TIME -->
+
+            <div class="schedule-field">
+
+              <label for="delivery-time">
+                Preferred delivery time
+              </label>
+
+              <select
+                id="delivery-time"
+                required
+              >
+
+                <option value="">
+                  Select a time
+                </option>
+
+                <option value="10:00 AM – 12:00 PM">
+                  10:00 AM – 12:00 PM
+                </option>
+
+                <option value="12:00 PM – 2:00 PM">
+                  12:00 PM – 2:00 PM
+                </option>
+
+                <option value="2:00 PM – 4:00 PM">
+                  2:00 PM – 4:00 PM
+                </option>
+
+                <option value="4:00 PM – 6:00 PM">
+                  4:00 PM – 6:00 PM
+                </option>
+
+                <option value="6:00 PM – 8:00 PM">
+                  6:00 PM – 8:00 PM
+                </option>
+
+              </select>
+
+              <small>
+                We will do our best to meet your preferred
+                time. Final timing will be confirmed with you.
+              </small>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- NOTES -->
 
           <label>
 
@@ -343,7 +489,8 @@
 
           <small>
             Your order message will include your food
-            subtotal and delivery address. Payment details
+            subtotal, delivery address, preferred delivery
+            date and preferred delivery time. Payment details
             will be provided after the final delivery fee
             has been confirmed.
           </small>
@@ -401,6 +548,92 @@
        ===================================================== -->
 
   <script src="script.js"></script>
+
+
+  <!-- =====================================================
+       DELIVERY DATE SETUP
+       ===================================================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        const dateInput =
+          document.getElementById("delivery-date");
+
+
+        if (!dateInput) {
+          return;
+        }
+
+
+        /*
+         * Use the customer's current local date.
+         * Earliest delivery = order date + 3 days.
+         */
+
+        const today = new Date();
+
+
+        const earliestDate =
+          new Date(today);
+
+
+        earliestDate.setDate(
+          earliestDate.getDate() + 3
+        );
+
+
+        /*
+         * Convert the date to YYYY-MM-DD,
+         * which is the format required by
+         * the HTML date input.
+         */
+
+        const year =
+          earliestDate.getFullYear();
+
+
+        const month =
+          String(
+            earliestDate.getMonth() + 1
+          ).padStart(2, "0");
+
+
+        const day =
+          String(
+            earliestDate.getDate()
+          ).padStart(2, "0");
+
+
+        const minimumDate =
+          `${year}-${month}-${day}`;
+
+
+        /*
+         * Prevent customers from selecting
+         * anything earlier than the minimum date.
+         */
+
+        dateInput.min =
+          minimumDate;
+
+
+        /*
+         * Automatically select the earliest
+         * available delivery date.
+         */
+
+        dateInput.value =
+          minimumDate;
+
+      }
+    );
+
+  </script>
+
 
 </body>
 

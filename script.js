@@ -17,9 +17,9 @@ const PRODUCTS = [
   {
     id: "nasi-lemak",
     name: "Nasi Lemak with Malaysian Curry",
-    description: "Malaysian chicken curry, omelette egg, stir fry vegetables.",
+    description: "Nasi lemak served with chicken curry and stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-    price: 30,
+    price: 18 with apple pie 20
     image: "images/nasi.png"
   },
 

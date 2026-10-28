@@ -55,7 +55,7 @@ const PRODUCTS = [
     name: "Rosemary Mushroom Chicken Pasta",
     description: "Penne pasta in rosemary mushroom chicken cream sauce.",
     reheat: "Steam recommended. Microwave for convenience.",
-    price: 20
+    price: 20,
     image: "images/Steamed.jpg"
   },
 

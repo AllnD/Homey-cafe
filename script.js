@@ -26,7 +26,7 @@ const PRODUCTS = [
   {
     id: "dakgalbi-bento",
     name: "Dakgalbi Bento",
-    description: "Korean-style chicken with stir-fried vegetables.",
+    description: "Korean-style chicken with dtir fry kimchi and fishcake.",
     reheat: "Steam recommended. Microwave for convenience",
     price: 20,
     image: "images/dakglbi.png"
@@ -35,7 +35,7 @@ const PRODUCTS = [
   {
     id: "japanese-curry",
     name: "Japanese Curry Bento",
-    description: "Main:Japanese curry chicken with potato and carrot. Side: Brocolli, tamagoyaki,mayo tunacorn",
+    description: "Japanese curry chicken with potato and carrot. Served with tamagoyaki and mayo tunacorn",
     reheat: "Steam recommended. Microwave for convenience",
     price: 18.80,
     image: "images/japanese.png"
@@ -44,18 +44,18 @@ const PRODUCTS = [
   {
     id: "paprika-chicken",
     name: "Paprikash Pasta with Roast Chicken",
-    description: "Roasted chicken with paprika vegetable spaghetti.Comes with apple pie dessert",
-    reheat: "Steam recommended. Microwave for convenience",
+    description: "Roasted chicken with paprika vegetable spaghetti.",
+    reheat: "Steam recommended. Microwave for convenience.",
     price: 22,
     image: "images/paprika.png"
   },
 
   {
-    id: "Ginger-chicken",
-    name: "Ginger Steam Chicken Bento",
-    description: "Tuna, sweet corn, egg roll and broccoli.",
-    reheat: "Steam recommended. Microwave for convenience",
-    price: 21,
+    id: "rosemary-pasta",
+    name: "Rosemary Mushroom Chicken Pasta",
+    description: "Penne pasta in rosemary mushroom chicken cream sauce.",
+    reheat: "Steam recommended. Microwave for convenience.",
+    price: 20
     image: "images/Steamed.jpg"
   },
 
@@ -87,9 +87,9 @@ const PRODUCTS = [
   },
 
   {
-    id: "Roast-chicken",
-    name: "Chicken Chop Set",
-    description: "Roast chicken chop, potatoes, baked beans, omelette eggs, pea salad,.",
+    id: "taco-beef",
+    name: "Taco Beef Tomato Baked Rice",
+    description: "RMexican inspired rice served with signature egg muffin and acar",
     reheat: "Microwave Box A and airfry Box B contents",
     price: 20,
     image: "images/kimchi-chicken.png"
@@ -114,11 +114,11 @@ const PRODUCTS = [
   },
 
   {
-    id: "taco-beef",
-    name: "Taco Beef Tomato Rice bake",
-    description: "Mexican inspired rice served with signature egg muffin and acar.",
-    reheat: "Microwave to reheat",
-    price: 21.80,
+    id: "Dessert",
+    name: "Apple pie dessert",
+    description: "Home baked apple pie served with vanila ice cream.",
+    reheat: "Airfryer or Oven to reheat",
+    price: 5.8,
     image: "images/kimchi-chicken.png"
   }
 

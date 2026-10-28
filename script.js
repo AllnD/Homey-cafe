@@ -19,7 +19,7 @@ const PRODUCTS = [
     name: "Nasi Lemak with Curry Chicken",
     description: "Nasi lemak served with chicken curry and stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-    price: 18 
+    price: 18, 
     image: "images/nasi.png"
   },
 

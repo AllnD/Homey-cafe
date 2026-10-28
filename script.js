@@ -16,7 +16,7 @@ const PRODUCTS = [
 
   {
     id: "nasi-lemak",
-    name: "Nasi Lemak with Malaysian Curry",
+    name: "Nasi Lemak with Curry Chicken",
     description: "Nasi lemak served with chicken curry and stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
     price: 18 with apple pie 20
@@ -43,8 +43,8 @@ const PRODUCTS = [
 
   {
     id: "paprika-chicken",
-    name: "Hungarian Paprika Spaghetti with Roast Chicken",
-    description: "Roasted chicken with paprika vegetable spaghetti.",
+    name: "Paprikash Pasta with Roast Chicken",
+    description: "Roasted chicken with paprika vegetable spaghetti.Comes with apple pie dessert",
     reheat: "Steam recommended. Microwave for convenience",
     price: 22,
     image: "images/paprika.png"

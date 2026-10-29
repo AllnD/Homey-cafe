@@ -116,7 +116,7 @@ const PRODUCTS = [
   {
     id: "Dessert",
     name: "Apple pie dessert",
-    description: "Home baked apple pie served with vanila ice cream.",
+    description: "Availble for purchase with any bundle orders.Home baked apple pie served with vanila ice cream.",
     reheat: "Airfryer or Oven to reheat",
     price: 5.8,
     image: "images/kimchi-chicken.png"

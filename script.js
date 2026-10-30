@@ -43,8 +43,8 @@ const PRODUCTS = [
 
   {
     id: "paprika-chicken",
-    name: "Paprikash Pasta with Roast Chicken",
-    description: "Roasted chicken with paprika vegetable spaghetti.",
+    name: "Paprikash Pasta with Chicken",
+    description: "Paprikash cream penne pasta served with steamed chicken for protein.",
     reheat: "Steam recommended. Microwave for convenience.",
     price: 22,
     image: "images/paprika.png"
@@ -53,7 +53,7 @@ const PRODUCTS = [
   {
     id: "rosemary-pasta",
     name: "Rosemary Mushroom Chicken Pasta",
-    description: "Penne pasta in rosemary mushroom chicken cream sauce.",
+    description: "Spaghetti in rosemary mushroom chicken cream sauce.",
     reheat: "Steam recommended. Microwave for convenience.",
     price: 20,
     image: "images/Steamed.jpg"

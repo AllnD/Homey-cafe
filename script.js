@@ -18,7 +18,7 @@ const PRODUCTS = [
     id: "nasi-lemak",
     name: "Nasi Lemak with Curry Chicken",
     description: "Nasi lemak served with chicken curry and stir fry vegetables.",
-    reheat: "Steam recommended. Microwave for convenience",
+    reheat: "Steam or Microwave",
     price: 18, 
     image: "images/nasi.png"
   },
@@ -27,7 +27,7 @@ const PRODUCTS = [
     id: "dakgalbi-bento",
     name: "Dakgalbi Bento",
     description: "Korean-style chicken with dtir fry kimchi and fishcake.",
-    reheat: "Steam recommended. Microwave for convenience",
+    reheat: "Steam or Microwave",
     price: 20,
     image: "images/dakglbi.png"
   },
@@ -36,7 +36,7 @@ const PRODUCTS = [
     id: "japanese-curry",
     name: "Japanese Curry Bento",
     description: "Japanese curry chicken with potato and carrot. Served with tamagoyaki and mayo tunacorn",
-    reheat: "Steam recommended. Microwave for convenience",
+    reheat: "Steam or Microwave",
     price: 18.80,
     image: "images/japanese.png"
   },
@@ -45,7 +45,7 @@ const PRODUCTS = [
     id: "paprika-chicken",
     name: "Paprikash Pasta with Chicken",
     description: "Paprikash cream penne pasta served with steamed chicken for protein.",
-    reheat: "Steam recommended. Microwave for convenience.",
+    reheat: "Steam or Microwave",
     price: 22,
     image: "images/paprika.png"
   },

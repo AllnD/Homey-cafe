@@ -505,3 +505,148 @@
   margin: 0 auto;
   border-radius: 14px;
 }
+
+/* =====================================================
+   REHEATING GUIDE PAGE
+   ===================================================== */
+
+.reheating-hero {
+  padding: 60px 0 35px;
+  text-align: center;
+  max-width: 800px;
+}
+
+.reheating-hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(38px, 6vw, 56px);
+  color: var(--brown);
+  margin: 10px 0 15px;
+}
+
+.reheating-hero h1 em {
+  color: var(--green);
+  font-style: normal;
+}
+
+.reheating-hero p:not(.eyebrow) {
+  color: var(--muted);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.reheating-note {
+  background: #f0ece3;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 0 auto 35px;
+  max-width: 900px;
+  font-size: 14px;
+}
+
+.reheating-note strong {
+  color: var(--brown);
+}
+
+.reheating-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding-bottom: 70px;
+}
+
+.reheating-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.reheating-placeholder {
+  height: 210px;
+  background: #eee8dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+}
+
+.reheating-photo {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.reheating-content {
+  padding: 22px;
+}
+
+.reheating-number {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.reheating-content h2 {
+  font-size: 23px;
+  color: var(--brown);
+  margin: 6px 0 10px;
+}
+
+.reheating-description {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.reheating-method {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 17px 0 6px;
+}
+
+.reheating-content ul {
+  padding-left: 20px;
+  margin: 5px 0 15px;
+  font-size: 13px;
+}
+
+.reheating-content li {
+  margin-bottom: 7px;
+}
+
+.reheating-tip {
+  background: #f0ece3;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 15px;
+}
+
+@media (max-width: 900px) {
+  .reheating-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .reheating-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .reheating-hero {
+    padding: 45px 0 30px;
+  }
+
+  .reheating-content {
+    padding: 20px;
+  }
+}

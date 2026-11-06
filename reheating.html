@@ -1,0 +1,594 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fridge Bistro — Reheating Guide</title>
+  <meta name="description" content="Reheating instructions for Fridge Bistro frozen meals.">
+
+  <style>
+    :root {
+      --cream: #faf7f0;
+      --paper: #fffdf8;
+      --ink: #24231f;
+      --muted: #77736b;
+      --brown: #70442c;
+      --green: #64734a;
+      --line: #e7e0d4;
+      --gold: #d6a23c;
+      --shadow: 0 12px 35px rgba(50,40,25,.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    .site-header {
+      background: rgba(250,247,240,.97);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+      font-family: Georgia, serif;
+      color: var(--brown);
+      font-size: 27px;
+      font-weight: bold;
+    }
+
+    .brand small {
+      font-size: 19px;
+    }
+
+    .back-link {
+      background: var(--ink);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 55px 0 35px;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.2;
+      margin: 10px 0 15px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin: 0 auto;
+    }
+
+    .general-note {
+      background: #f1eadc;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 0 auto 35px;
+      max-width: 900px;
+      font-size: 14px;
+    }
+
+    .general-note strong {
+      color: var(--brown);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-bottom: 65px;
+    }
+
+    .menu-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .image-placeholder {
+      height: 205px;
+      background: #eee8dc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8b806e;
+      font-size: 14px;
+      text-align: center;
+      padding: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Replace the placeholder div with an img when your photo is ready */
+    .menu-photo {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .menu-content {
+      padding: 22px;
+    }
+
+    .menu-number {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    .menu-content h2 {
+      font-family: Georgia, serif;
+      font-size: 23px;
+      margin: 5px 0 10px;
+      color: var(--brown);
+    }
+
+    .menu-description {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 18px;
+    }
+
+    .method-heading {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 17px 0 6px;
+      color: var(--ink);
+    }
+
+    .menu-content ul {
+      padding-left: 20px;
+      margin: 5px 0 15px;
+      font-size: 13px;
+    }
+
+    .menu-content li {
+      margin-bottom: 6px;
+    }
+
+    .instruction-note {
+      background: #f6f1e7;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 15px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .menu-content {
+        padding: 20px;
+      }
+
+      .image-placeholder,
+      .menu-photo {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span>Fridge</span>
+        <small>Bistro</small>
+      </a>
+
+      <a class="back-link" href="index.html">
+        Back to Menu
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero container">
+      <p class="eyebrow">FRIDGE BISTRO</p>
+      <h1>Reheat. Serve. Enjoy.</h1>
+      <p>
+        Your meal is ready when you are. Follow the reheating
+        instructions below to enjoy your Fridge Bistro meals
+        at their best.
+      </p>
+    </section>
+
+    <div class="container">
+      <div class="general-note">
+        <strong>Before reheating:</strong>
+        Keep frozen meals frozen until you are ready to reheat.
+        Follow the instructions for your particular meal.
+        Remove packaging that is not suitable for your chosen
+        reheating method. Make sure the food is thoroughly hot
+        throughout before eating.
+      </div>
+
+      <section class="menu-grid">
+
+        <!-- MENU 01 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Nasi Lemak photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 01</span>
+            <h2>Nasi Lemak with Malaysian Curry</h2>
+            <p class="menu-description">
+              A satisfying Malaysian favourite with fragrant rice,
+              curry chicken and accompanying sides.
+            </p>
+
+            <p class="method-heading">Steaming</p>
+            <ul>
+              <li>[Insert steaming instructions]</li>
+              <li>[Insert recommended timing]</li>
+            </ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul>
+              <li>[Insert microwave instructions]</li>
+              <li>[Insert recommended timing and power]</li>
+            </ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul>
+              <li>[Insert suitable components and instructions]</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- MENU 02 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Dakgalbi photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 02</span>
+            <h2>Dakgalbi Bento</h2>
+            <p class="menu-description">
+              Korean-inspired spicy chicken served with rice
+              and accompanying sides.
+            </p>
+
+            <p class="method-heading">Steaming</p>
+            <ul>
+              <li>[Insert steaming instructions]</li>
+              <li>[Insert recommended timing]</li>
+            </ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul>
+              <li>[Insert microwave instructions]</li>
+              <li>[Insert recommended timing and power]</li>
+            </ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul>
+              <li>[Insert suitable components and instructions]</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- MENU 03 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Japanese Curry photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 03</span>
+            <h2>Japanese Curry</h2>
+            <p class="menu-description">
+              Japanese-style curry with chicken, vegetables
+              and accompanying sides.
+            </p>
+
+            <p class="method-heading">Steaming</p>
+            <ul>
+              <li>[Insert steaming instructions]</li>
+              <li>[Insert recommended timing]</li>
+            </ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul>
+              <li>[Insert microwave instructions]</li>
+              <li>[Insert recommended timing and power]</li>
+            </ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul>
+              <li>[Insert suitable components and instructions]</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- MENU 04 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Paprika Chicken photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 04</span>
+            <h2>Hungarian Paprika Chicken</h2>
+            <p class="menu-description">
+              A comforting paprika-seasoned chicken meal
+              with accompanying sides.
+            </p>
+
+            <p class="method-heading">Steaming</p>
+            <ul>
+              <li>[Insert steaming instructions]</li>
+              <li>[Insert recommended timing]</li>
+            </ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul>
+              <li>[Insert microwave instructions]</li>
+              <li>[Insert recommended timing and power]</li>
+            </ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul>
+              <li>[Insert suitable components and instructions]</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- MENU 05 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Tuna Corn photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 05</span>
+            <h2>Tuna Corn</h2>
+            <p class="menu-description">
+              A tuna and sweet corn meal with its accompanying
+              sauce and sides.
+            </p>
+
+            <p class="method-heading">Steaming</p>
+            <ul>
+              <li>[Insert steaming instructions]</li>
+              <li>[Insert recommended timing]</li>
+            </ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul>
+              <li>[Insert microwave instructions]</li>
+              <li>[Insert recommended timing and power]</li>
+            </ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul>
+              <li>[Insert suitable components and instructions]</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- MENU 06 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Kimchi Chicken photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 06</span>
+            <h2>Kimchi Chicken</h2>
+            <p class="menu-description">
+              A Korean-inspired chicken dish with kimchi flavours
+              and accompanying sides.
+            </p>
+
+            <p class="method-heading">Steaming</p>
+            <ul>
+              <li>[Insert steaming instructions]</li>
+              <li>[Insert recommended timing]</li>
+            </ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul>
+              <li>[Insert microwave instructions]</li>
+              <li>[Insert recommended timing and power]</li>
+            </ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul>
+              <li>[Insert suitable components and instructions]</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- MENU 07 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Menu 07 photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 07</span>
+            <h2>Menu Name 07</h2>
+            <p class="menu-description">[Insert short menu description]</p>
+
+            <p class="method-heading">Steaming</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+          </div>
+        </article>
+
+        <!-- MENU 08 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Menu 08 photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 08</span>
+            <h2>Menu Name 08</h2>
+            <p class="menu-description">[Insert short menu description]</p>
+
+            <p class="method-heading">Steaming</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+          </div>
+        </article>
+
+        <!-- MENU 09 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Menu 09 photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 09</span>
+            <h2>Menu Name 09</h2>
+            <p class="menu-description">[Insert short menu description]</p>
+
+            <p class="method-heading">Steaming</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+          </div>
+        </article>
+
+        <!-- MENU 10 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Menu 10 photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 10</span>
+            <h2>Menu Name 10</h2>
+            <p class="menu-description">[Insert short menu description]</p>
+
+            <p class="method-heading">Steaming</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+          </div>
+        </article>
+
+        <!-- MENU 11 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Menu 11 photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 11</span>
+            <h2>Menu Name 11</h2>
+            <p class="menu-description">[Insert short menu description]</p>
+
+            <p class="method-heading">Steaming</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+          </div>
+        </article>
+
+        <!-- MENU 12 -->
+        <article class="menu-card">
+          <div class="image-placeholder">Insert Menu 12 photo here</div>
+          <div class="menu-content">
+            <span class="menu-number">MENU 12</span>
+            <h2>Menu Name 12</h2>
+            <p class="menu-description">[Insert short menu description]</p>
+
+            <p class="method-heading">Steaming</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Microwave</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+
+            <p class="method-heading">Air Fryer / Oven</p>
+            <ul><li>[Insert instructions and timing]</li></ul>
+          </div>
+        </article>
+
+      </section>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>Fridge Bistro</strong><br>
+      Restaurant in your fridge.
+    </div>
+  </footer>
+
+</body>
+</html>
+```

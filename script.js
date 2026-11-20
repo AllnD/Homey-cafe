@@ -1265,7 +1265,7 @@ function formatDeliveryDate(dateString) {
  * Replace this with your deployed Google Apps Script URL.
  */
 const ORDER_REGISTER_URL =
-  "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+  "https://script.google.com/macros/s/AKfycbwj-xPquDYoWF7rkui7A-CULl_vxub3V6Ymj_ia4jA6w0-FvEDOaSHZF-gsLl08sJSc/exec";
 
 
 /*

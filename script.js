@@ -1255,211 +1255,385 @@ function formatDeliveryDate(dateString) {
 
 
 
+
 /* =========================================================
-   CREATE WHATSAPP ORDER MESSAGE
+   GOOGLE SHEETS ORDER REGISTER
    ========================================================= */
 
-function message() {
-
-  const cart =
-    getCart();
-
-
-  const ids =
-    Object.keys(cart);
+/*
+ * IMPORTANT:
+ * Replace this with your deployed Google Apps Script URL.
+ */
+const ORDER_REGISTER_URL =
+  "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 
 
-  if (!ids.length) {
+/*
+ * Holds the current checkout's registration.
+ * Both checkout buttons reuse the same number when
+ * the customer's order details have not changed.
+ */
+let pendingOrderRegistration = null;
 
-    return "";
+
+/* =========================================================
+   COLLECT ORDER INFORMATION
+   ========================================================= */
+
+function collectOrderData() {
+
+  const cart = getCart();
+  const ids = Object.keys(cart);
+
+  let subtotal = 0;
+  const lines = [];
+
+  ids.forEach(id => {
+
+    const item = getCartItem(id);
+
+    if (!item) {
+      return;
+    }
+
+    const quantity = Number(cart[id]) || 0;
+    const lineTotal = item.price * quantity;
+
+    subtotal += lineTotal;
+
+    if (item.type === "bundle") {
+
+      lines.push(
+        `- ${item.name} Bundle x ${quantity} = ${money(lineTotal)}`
+      );
+
+      const meals = item.bundle.meals
+        .map(mealId =>
+          PRODUCTS.find(product => product.id === mealId)
+        )
+        .filter(Boolean);
+
+      meals.forEach(meal => {
+        lines.push(`  • ${meal.name}`);
+      });
+
+    } else {
+
+      lines.push(
+        `- ${item.name} x ${quantity} = ${money(lineTotal)}`
+      );
+
+    }
+
+  });
+
+
+  function value(id) {
+
+    const element = document.getElementById(id);
+
+    return element ? element.value.trim() : "";
 
   }
 
 
-  let subtotal = 0;
+  const deliveryDateRaw = value("delivery-date");
 
+  return {
 
-  const lines = [];
-
-
-  ids.forEach(
-    id => {
-
-
-      const item =
-        getCartItem(id);
-
-
-      if (!item) {
-        return;
-      }
-
-
-      const quantity =
-        Number(cart[id]) || 0;
-
-
-      const lineTotal =
-        item.price * quantity;
-
-
-      subtotal +=
-        lineTotal;
-
-
-
-      /* =================================================
-         BUNDLE
-         ================================================= */
-
-      if (
-        item.type === "bundle"
-      ) {
-
-
-        lines.push(
-          `- ${item.name} Bundle x ${quantity} = ${money(lineTotal)}`
-        );
-
-
-        const meals =
-          item.bundle.meals
-            .map(
-              mealId =>
-                PRODUCTS.find(
-                  product =>
-                    product.id === mealId
-                )
-            )
-            .filter(Boolean);
-
-
-        meals.forEach(
-          meal => {
-
-            lines.push(
-              `  • ${meal.name}`
-            );
-
-          }
-        );
-
-      }
-
-
-
-      /* =================================================
-         INDIVIDUAL PRODUCT
-         ================================================= */
-
-      else {
-
-        lines.push(
-          `- ${item.name} x ${quantity} = ${money(lineTotal)}`
-        );
-
-      }
-
-    }
-  );
-
-
-
-  /* =======================================================
-     CUSTOMER DETAILS
-     ======================================================= */
-
-  const value =
-    id => {
-
-      const element =
-        document.getElementById(id);
-
-
-      if (!element) {
-        return "";
-      }
-
-
-      return element.value.trim();
-
-    };
-
-
-
-  /* =======================================================
-     DELIVERY INFORMATION
-     ======================================================= */
-
-  const deliveryDateRaw =
-    value("delivery-date");
-
-
-  const deliveryDate =
-    formatDeliveryDate(
-      deliveryDateRaw
-    );
-
-
-  const deliveryTime =
-    value("delivery-time");
-
-
-  /*
-     Record the order date as well.
-     This lets you immediately see
-     when the customer placed the order.
-  */
-
-  const orderDate =
-    new Date().toLocaleDateString(
+    orderDate: new Date().toLocaleDateString(
       "en-MY",
       {
         day: "numeric",
         month: "long",
         year: "numeric"
       }
-    );
+    ),
+
+    customerName: value("customer-name"),
+    phone: value("customer-phone"),
+    address: value("customer-address"),
+
+    items: lines.join("\n"),
+    foodSubtotal: subtotal,
+
+    deliveryDate: formatDeliveryDate(deliveryDateRaw),
+    deliveryTime: value("delivery-time"),
+
+    notes: value("customer-notes")
+
+  };
+
+}
 
 
+/* =========================================================
+   GENERATE REQUEST ID
+   ========================================================= */
 
-  /* =======================================================
-     FINAL WHATSAPP MESSAGE
-     ======================================================= */
+function generateRequestId() {
+
+  if (
+    window.crypto &&
+    typeof window.crypto.randomUUID === "function"
+  ) {
+    return window.crypto.randomUUID();
+  }
+
+  return "FB-" +
+    Date.now() + "-" +
+    Math.random().toString(36).substring(2, 12);
+
+}
+
+
+/* =========================================================
+   CONTACT GOOGLE SHEETS
+   ========================================================= */
+
+/*
+ * JSONP is used here because the website is hosted on
+ * GitHub Pages and the Apps Script endpoint is on Google.
+ *
+ * This avoids relying on a cross-origin fetch response.
+ */
+
+function callOrderRegister(payload, requestId) {
+
+  return new Promise((resolve, reject) => {
+
+    const callbackName =
+      "fbOrderCallback_" +
+      Date.now() + "_" +
+      Math.floor(Math.random() * 1000000);
+
+    const script = document.createElement("script");
+
+    let finished = false;
+
+    function cleanup() {
+
+      clearTimeout(timeout);
+
+      script.remove();
+
+      delete window[callbackName];
+
+    }
+
+
+    function finish(error, result) {
+
+      if (finished) {
+        return;
+      }
+
+      finished = true;
+
+      cleanup();
+
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result);
+      }
+
+    }
+
+
+    window[callbackName] = function(response) {
+
+      if (
+        !response ||
+        !response.ok ||
+        !response.orderNumber
+      ) {
+
+        finish(
+          new Error(
+            response && response.error
+              ? response.error
+              : "Google Sheets could not register the order."
+          )
+        );
+
+        return;
+
+      }
+
+      finish(null, response);
+
+    };
+
+
+    const requestData = {
+      ...payload,
+      requestId: requestId
+    };
+
+
+    const url =
+      ORDER_REGISTER_URL +
+      "?callback=" + encodeURIComponent(callbackName) +
+      "&data=" + encodeURIComponent(
+        JSON.stringify(requestData)
+      );
+
+
+    script.src = url;
+    script.async = true;
+
+
+    script.onerror = function() {
+
+      finish(
+        new Error(
+          "Unable to connect to the order register."
+        )
+      );
+
+    };
+
+
+    const timeout = setTimeout(() => {
+
+      finish(
+        new Error(
+          "The order register took too long to respond. Please try again."
+        )
+      );
+
+    }, 20000);
+
+
+    document.head.appendChild(script);
+
+  });
+
+}
+
+
+/* =========================================================
+   GET OR CREATE ORDER NUMBER
+   ========================================================= */
+
+async function getRegisteredOrderNumber(data) {
+
+  const fingerprint = JSON.stringify(data);
+
+  /*
+   * If the same checkout details are submitted again,
+   * reuse the same request ID and registered number.
+   *
+   * If the customer changes the cart or form details,
+   * a new order registration is created.
+   */
+  if (
+    !pendingOrderRegistration ||
+    pendingOrderRegistration.fingerprint !== fingerprint
+  ) {
+
+    pendingOrderRegistration = {
+
+      fingerprint: fingerprint,
+
+      requestId: generateRequestId(),
+
+      orderNumber: null,
+
+      promise: null
+
+    };
+
+  }
+
+
+  const registration = pendingOrderRegistration;
+
+
+  if (registration.orderNumber) {
+    return registration.orderNumber;
+  }
+
+
+  /*
+   * Prevent the two checkout buttons from creating
+   * simultaneous registrations for the same order.
+   */
+  if (!registration.promise) {
+
+    registration.promise = callOrderRegister(
+      data,
+      registration.requestId
+    )
+    .then(response => {
+
+      registration.orderNumber = response.orderNumber;
+
+      return response.orderNumber;
+
+    })
+    .catch(error => {
+
+      /*
+       * Keep the same request ID if the customer retries.
+       * The server checks that ID before creating another row.
+       */
+      registration.promise = null;
+
+      throw error;
+
+    });
+
+  }
+
+
+  return registration.promise;
+
+}
+
+
+/* =========================================================
+   CREATE WHATSAPP ORDER MESSAGE
+   ========================================================= */
+
+function message(orderNumber, data) {
 
   return [
 
-    "HOMEY CAFE ORDER",
+    "FRIDGE BISTRO ORDER",
+
+    `Order number: ${orderNumber}`,
 
     "",
 
-    ...lines,
+    data.items,
 
     "",
 
-    `FOOD SUBTOTAL: ${money(subtotal)}`,
+    `FOOD SUBTOTAL: ${money(data.foodSubtotal)}`,
 
     "DELIVERY: TO BE CONFIRMED",
 
-    `TOTAL: ${money(subtotal)} + delivery`,
+    `TOTAL: ${money(data.foodSubtotal)} + delivery`,
 
     "",
 
-    `Order date: ${orderDate}`,
+    `Order date: ${data.orderDate}`,
 
-    `Preferred delivery date: ${deliveryDate || "-"}`,
+    `Preferred delivery date: ${data.deliveryDate || "-"}`,
 
-    `Preferred delivery time: ${deliveryTime || "-"}`,
+    `Preferred delivery time: ${data.deliveryTime || "-"}`,
 
     "",
 
-    `Name: ${value("customer-name")}`,
+    `Name: ${data.customerName}`,
 
-    `Phone: ${value("customer-phone")}`,
+    `Phone: ${data.phone}`,
 
-    `Delivery address: ${value("customer-address")}`,
+    `Delivery address: ${data.address}`,
 
-    `Notes: ${value("customer-notes") || "-"}`,
+    `Notes: ${data.notes || "-"}`,
 
     "",
 
@@ -1470,51 +1644,32 @@ function message() {
 }
 
 
-
 /* =========================================================
    VALIDATE ORDER
    ========================================================= */
 
 function valid() {
 
-  const form =
-    document.getElementById(
-      "order-form"
-    );
+  const form = document.getElementById("order-form");
+
+  if (form && !form.reportValidity()) {
+    return false;
+  }
 
 
-  if (
-    form &&
-    !form.reportValidity()
-  ) {
+  const cart = getCart();
+
+  if (!Object.keys(cart).length) {
+
+    status("Your cart is empty.");
 
     return false;
 
   }
-
-
-  const cart =
-    getCart();
-
-
-  if (
-    !Object.keys(cart).length
-  ) {
-
-    status(
-      "Your cart is empty."
-    );
-
-
-    return false;
-
-  }
-
 
   return true;
 
 }
-
 
 
 /* =========================================================
@@ -1523,42 +1678,86 @@ function valid() {
 
 function status(messageText) {
 
-  const element =
-    document.getElementById(
-      "checkout-status"
-    );
-
+  const element = document.getElementById("checkout-status");
 
   if (element) {
-
-    element.textContent =
-      messageText;
-
+    element.textContent = messageText;
   }
 
 }
 
+
+/* =========================================================
+   COPY TEXT TO CLIPBOARD
+   ========================================================= */
+
+async function copyTextToClipboard(text) {
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+
+    try {
+
+      await navigator.clipboard.writeText(text);
+
+      return true;
+
+    } catch (error) {
+
+      // Try the fallback below.
+
+    }
+
+  }
+
+
+  const textarea = document.createElement("textarea");
+
+  textarea.value = text;
+
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+
+  document.body.appendChild(textarea);
+
+  textarea.select();
+
+  let copied = false;
+
+  try {
+
+    copied = document.execCommand("copy");
+
+  } catch (error) {
+
+    copied = false;
+
+  }
+
+  textarea.remove();
+
+  return copied;
+
+}
 
 
 /* =========================================================
    CREATE WHATSAPP ORDER
    ========================================================= */
 
-function createOrder() {
+async function createOrder() {
 
   if (!valid()) {
     return;
   }
 
 
-  const orderMessage =
-    message();
-
-
-  if (!orderMessage) {
+  if (
+    !ORDER_REGISTER_URL ||
+    ORDER_REGISTER_URL.includes("PASTE_YOUR_")
+  ) {
 
     status(
-      "Unable to create the order."
+      "The Google Sheets order register has not been connected yet."
     );
 
     return;
@@ -1566,30 +1765,86 @@ function createOrder() {
   }
 
 
-  if (WHATSAPP_NUMBER) {
+  /*
+   * Open a blank tab immediately, before waiting for Google.
+   * This helps avoid browser popup blocking.
+   */
+  const whatsappWindow = window.open("about:blank", "_blank");
 
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(orderMessage)}`,
-      "_blank"
-    );
+
+  try {
+
+    status("Registering your order...");
+
+    const data = collectOrderData();
+
+    const orderNumber =
+      await getRegisteredOrderNumber(data);
+
+    const orderMessage =
+      message(orderNumber, data);
 
 
-    status(
-      "Opening WhatsApp with your order."
-    );
+    if (WHATSAPP_NUMBER) {
+
+      if (whatsappWindow) {
+
+        whatsappWindow.location.href =
+          `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(orderMessage)}`;
+
+        status(
+          `Order ${orderNumber} registered. Opening WhatsApp.`
+        );
+
+      } else {
+
+        const copied =
+          await copyTextToClipboard(orderMessage);
+
+        if (copied) {
+
+          status(
+            `Order ${orderNumber} registered and copied. Your browser blocked the WhatsApp window. Paste the message into WhatsApp.`
+          );
+
+        } else {
+
+          status(
+            `Order ${orderNumber} registered. Your browser blocked the WhatsApp window. Please use Copy order details.`
+          );
+
+        }
+
+      }
+
+    } else {
+
+      if (whatsappWindow) {
+        whatsappWindow.close();
+      }
+
+      status(orderMessage);
+
+    }
 
   }
 
-  else {
+  catch (error) {
+
+    if (whatsappWindow) {
+      whatsappWindow.close();
+    }
+
+    console.error("Order registration error:", error);
 
     status(
-      orderMessage
+      "Your order could not be registered. Please try again. " +
+      (error.message || "")
     );
 
   }
 
 }
-
 
 
 /* =========================================================
@@ -1603,33 +1858,65 @@ async function copyOrder() {
   }
 
 
-  const orderMessage =
-    message();
+  if (
+    !ORDER_REGISTER_URL ||
+    ORDER_REGISTER_URL.includes("PASTE_YOUR_")
+  ) {
+
+    status(
+      "The Google Sheets order register has not been connected yet."
+    );
+
+    return;
+
+  }
 
 
   try {
 
-    await navigator.clipboard.writeText(
-      orderMessage
-    );
+    status("Registering your order...");
+
+    const data = collectOrderData();
+
+    const orderNumber =
+      await getRegisteredOrderNumber(data);
+
+    const orderMessage =
+      message(orderNumber, data);
 
 
-    status(
-      "Order details copied. Paste them into WhatsApp."
-    );
+    const copied =
+      await copyTextToClipboard(orderMessage);
+
+
+    if (copied) {
+
+      status(
+        `Order ${orderNumber} registered. Order details copied. Paste them into WhatsApp.`
+      );
+
+    } else {
+
+      status(
+        `Order ${orderNumber} registered, but copying failed. Please try again.`
+      );
+
+    }
 
   }
 
-  catch {
+  catch (error) {
+
+    console.error("Order registration error:", error);
 
     status(
-      orderMessage
+      "Your order could not be registered. Please try again. " +
+      (error.message || "")
     );
 
   }
 
 }
-
 
 
 /* =========================================================

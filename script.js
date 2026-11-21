@@ -1892,7 +1892,7 @@ async function copyOrder() {
     if (copied) {
 
       status(
-        `Order ${orderNumber} registered. Order details copied. Paste them into email and send to mr.allan.dou@gmail.com.`
+        `Order ${orderNumber} registered. Order details copied. Paste them into email and send to mr.allan.dou@gmail.com for confirmation.`
       );
 
     } else {

@@ -17,9 +17,9 @@ const PRODUCTS = [
   {
     id: "nasi-lemak",
     name: "Nasi Lemak with Curry Chicken",
-    description: "Nasi lemak served with chicken curry and stir fry vegetables.Prepare fresh cucumber and boiled eggs to experience a full nasi lemak restaurant experience at home",
+    description: "Nasi lemak served with chicken curry and Acar.Prepare fresh cucumber and boiled eggs to experience a full nasi lemak experience at home",
     reheat: "Steam or Microwave",
-    price: 18, 
+    price: 19.50, 
     image: "images/nasi.png"
   },
 

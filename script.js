@@ -26,7 +26,7 @@ const PRODUCTS = [
   {
     id: "dakgalbi-bento",
     name: "Dakgalbi Bento",
-    description: "Korean-style chicken with dtir fry kimchi and fishcake.",
+    description: "Korean-style chicken with stir fry kimchi and fishcake.",
     reheat: "Steam or Microwave",
     price: 20,
     image: "images/dakglbi.png"

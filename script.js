@@ -17,7 +17,7 @@ const PRODUCTS = [
   {
     id: "nasi-lemak",
     name: "Nasi Lemak with Curry Chicken",
-    description: "Nasi lemak served with chicken curry and Acar. Prepare fresh cucumber and boiled eggs to have a full nasi lemak experience at home",
+    description: "Malaysia's number 1 dish.Nasi lemak served with chicken curry and Acar. Prepare fresh cucumber and boiled eggs to have a full nasi lemak experience at home",
     reheat: "Steam or Microwave",
     price: 19.50, 
     image: "images/nasi.png"
@@ -35,7 +35,7 @@ const PRODUCTS = [
   {
     id: "japanese-curry",
     name: "Japanese Curry Bento",
-    description: "Japanese curry chicken with potato and carrot. Served with tamagoyaki and mayo tunacorn",
+    description: "Japanese inspired easy to eat dish. Japanese curry chicken with potato and carrot. Served with tamagoyaki and mayo tunacorn",
     reheat: "Steam or Microwave",
     price: 18.80,
     image: "images/japanese.png"
@@ -44,7 +44,7 @@ const PRODUCTS = [
   {
     id: "paprika-chicken",
     name: "Paprikash Pasta with Chicken",
-    description: "Paprikash cream penne pasta served with steamed chicken for protein.",
+    description: "Hungarian inspired Paprikash cream penne pasta served with steamed chicken for protein.",
     reheat: "Steam or Microwave",
     price: 22,
     image: "images/paprika.png"
@@ -53,7 +53,7 @@ const PRODUCTS = [
   {
     id: "rosemary-pasta",
     name: "Rosemary Mushroom Chicken Pasta",
-    description: "Spaghetti in rosemary mushroom chicken cream sauce.",
+    description: "Chef's favourite: Spaghetti in rosemary mushroom chicken cream sauce.",
     reheat: "Steam recommended. Microwave for convenience.",
     price: 20,
     image: "images/Steamed.jpg"
@@ -71,17 +71,17 @@ const PRODUCTS = [
   {
     id: "variety-box",
     name: "Variety Party Bento",
-    description: "Fried noodle, tomato beef, chicken potato salad, Omurice.",
-    reheat: "Steam recommended. Microwave for convenience",
+    description: "Feeling bored? Then try our variety party box. Fried noodle, tomato beef, chicken potato salad, Omurice.",
+    reheat: "Microwave and air fry/oven recommended",
     price: 20,
     image: "images/kimchi-chicken.png"
   },
 
   {
     id: "Red-Chicken",
-    name: "Spicy Sweet Chicken Bento",
-    description: "Savory chicken with sweet sauce and vegetables.",
-    reheat: "Steam recommended. Microwave for convenience",
+    name: "Mee Goreng Basah",
+    description: "Classic Malaysian party food. Malay style stir fry noodles. Cooked with shrimp, veges and chicken",
+    reheat: "Microwave recommended for best texture and taste. Steam is also an option but will lose some texture ",
     price: 20,
     image: "images/spicy.jpg"
   },
@@ -89,7 +89,7 @@ const PRODUCTS = [
   {
     id: "taco-beef",
     name: "Taco Beef Tomato Baked Rice",
-    description: "RMexican inspired rice served with signature egg muffin and acar",
+    description: "Mexican inspired rice served with signature egg muffin and acar",
     reheat: "Microwave Box A and airfry Box B contents",
     price: 20,
     image: "images/kimchi-chicken.png"
@@ -98,7 +98,7 @@ const PRODUCTS = [
   {
     id: "Teriyaki-chicken",
     name: "Teriyaki Chicken bento",
-    description: "Savory teriyaki chicken with stir fry vegetables.",
+    description: "International favourite: Savory teriyaki chicken with stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
     price: 18.8,
     image: "images/teriyaki.png"
@@ -116,7 +116,7 @@ const PRODUCTS = [
   {
     id: "Dessert",
     name: "Apple pie dessert",
-    description: "Availble for purchase with any bundle orders.Home baked apple pie served with vanila ice cream.",
+    description: "Available for purchase with any bundle orders.Home baked apple pie served with vanila ice cream.",
     reheat: "Airfryer or Oven to reheat",
     price: 5.8,
     image: "images/kimchi-chicken.png"

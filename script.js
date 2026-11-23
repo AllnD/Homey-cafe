@@ -78,7 +78,7 @@ const PRODUCTS = [
   },
 
   {
-    id: "Red-Chicken",
+    id: "Mee-Goreng",
     name: "Mee Goreng Basah",
     description: "Classic Malaysian party food. Malay style stir fry noodles. Cooked with shrimp, veges and chicken",
     reheat: "Microwave recommended for best texture and taste. Steam is also an option but will lose some texture ",

@@ -35,7 +35,7 @@ const PRODUCTS = [
   {
     id: "japanese-curry",
     name: "Japanese Curry Bento",
-    description: "Japanese inspired easy to eat dish. Japanese curry chicken with pumpkin and carrot. Served with tamagoyaki and mayo tunacorn",
+    description: "Japanese inspired Japanese curry chicken with pumpkin and carrot. Served with tamagoyaki and mayo tunacorn",
     reheat: "Steam or Microwave",
     price: 18.80,
     image: "images/japanese.png"

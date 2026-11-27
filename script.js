@@ -96,9 +96,9 @@ const PRODUCTS = [
   },
 
   {
-    id: "Teriyaki-chicken",
-    name: "Teriyaki Chicken bento",
-    description: "International favourite: Savory teriyaki chicken with stir fry vegetables.",
+    id: "curry-Tomato",
+    name: "Curry Tomato rice",
+    description: "Indian style tomato basmati rice served with malaysian curry and stir fry vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
     price: 18.8,
     image: "images/teriyaki.png"

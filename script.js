@@ -71,7 +71,7 @@ const PRODUCTS = [
   {
     id: "variety-box",
     name: "Variety Party Bento",
-    description: "Feeling bored? Then try our variety party box. Fried noodle, tomato beef, chicken potato salad, Omurice.",
+    description: "Feeling bored? Then try our variety party box. A platter of tomato rice, chicken potato salad, mee goreng basah, roast chicken with mushroom sauce.",
     reheat: "Microwave and air fry/oven recommended",
     price: 20,
     image: "images/kimchi-chicken.png"
@@ -81,15 +81,15 @@ const PRODUCTS = [
     id: "Mee-Goreng",
     name: "Mee Goreng Basah",
     description: "Classic Malaysian party food. Malay style stir fry noodles. Cooked with shrimp, veges and chicken",
-    reheat: "Microwave recommended for best texture and taste. Steam is also an option but will lose some texture ",
+    reheat: "Microwave recommended for best texture and taste. Steam is also an option but will lose some texture. Yuo can also stir fry to reheat. ",
     price: 20,
     image: "images/spicy.jpg"
   },
 
   {
     id: "taco-beef",
-    name: "Taco Beef Tomato Baked Rice",
-    description: "Mexican inspired rice served with signature egg muffin and acar",
+    name: "Taco Beef Tomato Rice",
+    description: "Mexican inspired beef served with Indian style tomato rice. Only order if you love tomatoes",
     reheat: "Microwave Box A and airfry Box B contents",
     price: 20,
     image: "images/kimchi-chicken.png"

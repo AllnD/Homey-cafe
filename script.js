@@ -89,7 +89,7 @@ const PRODUCTS = [
   {
     id: "taco-beef",
     name: "Taco Beef Tomato Rice",
-    description: "Mexican inspired beef dish served with Indian style tomato rice with cheese toppings. Only order if you love tomatoes",
+    description: "Mexican inspired beef dish served with Indian style tomato basmati rice with cheese toppings. Only order if you love tomatoes",
     reheat: "Microwave or Oven",
     price: 19.50,
     image: "images/kimchi-chicken.png"

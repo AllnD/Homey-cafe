@@ -46,7 +46,7 @@ const PRODUCTS = [
     name: "Paprikash Pasta with Chicken",
     description: "Hungarian inspired Paprikash cream penne pasta served with steamed chicken for protein.",
     reheat: "Steam recommended. Microwave for convenience",
-    price: 22,
+    price: 20,
     image: "images/paprika.png"
   },
 
@@ -61,19 +61,19 @@ const PRODUCTS = [
 
   {
     id: "Soy-chicken",
-    name: "Soy Chicken Bento",
-    description: "Savory chicken with cooked kimchi and vegetables.",
+    name: "Soy Sauce Chicken Bento",
+    description: "Home cooked chinese soy chicken and vegetables.",
     reheat: "Steam recommended. Microwave for convenience",
-    price: 20,
+    price: 18.80,
     image: "images/soy.png"
   },
 
   {
     id: "variety-box",
     name: "Variety Party Bento",
-    description: "Feeling bored? Then try our variety party bento. A platter of tomato rice, chicken potato salad, mee goreng basah, roast chicken with mushroom sauce.",
+    description: "Feeling bored? Then try our variety party bento. A platter of tomato rice, roast potatoes, mix vege salad, mee goreng basah, roast chicken with mushroom sauce.",
     reheat: "Microwave and air fry/oven recommended",
-    price: 20,
+    price: 24,
     image: "images/kimchi-chicken.png"
   },
 
@@ -82,7 +82,7 @@ const PRODUCTS = [
     name: "Mee Goreng Basah",
     description: "Classic Malaysian party food. Malay style stir fry noodles. Cooked with shrimp, veges and chicken",
     reheat: "Microwave recommended for best texture and taste. Steam is also an option but will lose some texture. Yuo can also stir fry to reheat. ",
-    price: 20,
+    price: 17.80,
     image: "images/spicy.jpg"
   },
 
@@ -91,7 +91,7 @@ const PRODUCTS = [
     name: "Taco Beef Tomato Rice",
     description: "Mexican inspired beef dish served with Indian style tomato rice with cheese toppings. Only order if you love tomatoes",
     reheat: "Microwave or Oven",
-    price: 20,
+    price: 19.50,
     image: "images/kimchi-chicken.png"
   },
 
@@ -105,18 +105,18 @@ const PRODUCTS = [
   },
 
   {
-    id: "herb-chicken",
+    id: "roast-chicken",
     name: "Roast Chicken Chop with Mushroom Sauce",
     description: "Roast chicken with mushroom sauce served with roast potatoes, baked beans, apple pie, bread and mix vege salad.",
     reheat: "This meal requires both Microwave and air fryer/oven reheat",
-    price: 21,
+    price: 24,
     image: "images/kimchi-chicken.png"
   },
 
   {
     id: "Dessert",
     name: "Apple pie dessert",
-    description: "Available for purchase with any minimum bundle orders.Home baked apple pie served with vanila ice cream.",
+    description: "Available for purchase with any minimum bundle orders. Home baked apple pie served with vanila ice cream.",
     reheat: "Airfryer or Oven to reheat",
     price: 5.8,
     image: "images/kimchi-chicken.png"

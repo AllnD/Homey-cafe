@@ -106,9 +106,9 @@ const PRODUCTS = [
 
   {
     id: "herb-chicken",
-    name: "Mediteranean Roasted Herb Chicken",
-    description: "Savory chicken with mediteranean herbs and spices.",
-    reheat: "This meal requires both Microwave and air fryer reheat",
+    name: "Roast Chicken Chop with Mushroom Sauce",
+    description: "Roast chicken with mushroom sauce served with roast potatoes, baked beans, apple pie, bread and mix vege salad.",
+    reheat: "This meal requires both Microwave and air fryer/oven reheat",
     price: 21,
     image: "images/kimchi-chicken.png"
   },

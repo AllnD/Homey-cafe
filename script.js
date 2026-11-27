@@ -141,8 +141,8 @@ const BUNDLES = [
     description: "Three comforting favourites chosen for a satisfying home-style meal.",
     meals: [
       "nasi-lemak",
-      "dakgalbi-bento",
-      "japanese-curry"
+      "Mee-Goreng",
+      "Soy-chicken"
     ],
     price: 40
   },
@@ -166,7 +166,7 @@ const BUNDLES = [
     name: "Comfort Food",
     description: "Classic comfort meals for those days when you want something hearty.",
     meals: [
-      "japanese-curry",
+      "curry-Tomato",
       "paprika-chicken",
       "nasi-lemak"
     ],
@@ -180,8 +180,8 @@ const BUNDLES = [
     description: "Three chicken-based favourites packed into one convenient bundle.",
     meals: [
       "nasi-lemak",
-      "paprika-chicken",
-      "kimchi-chicken"
+      "taco-beef",
+      "nasi-lemak"
     ],
     price: 60
   },

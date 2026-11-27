@@ -17,7 +17,7 @@ const PRODUCTS = [
   {
     id: "nasi-lemak",
     name: "Nasi Lemak with Curry Chicken",
-    description: "Malaysia's number 1 dish.Nasi lemak served with chicken curry and Acar. Prepare fresh cucumber and boiled eggs to have a full nasi lemak experience at home",
+    description: "Malaysia's number 1 dish. Nasi lemak served with chicken curry and Acar. Prepare fresh cucumber and boiled eggs to have a full nasi lemak experience at home",
     reheat: "Steam or Microwave",
     price: 19.50, 
     image: "images/nasi.png"
@@ -26,7 +26,7 @@ const PRODUCTS = [
   {
     id: "dakgalbi-bento",
     name: "Dakgalbi Bento",
-    description: "Korean-style chicken with stir fry kimchi and fishcake.",
+    description: "Korean-style Gochujang flavoured chicken with stir fry kimchi and fishcake.",
     reheat: "Steam or Microwave",
     price: 20,
     image: "images/dakglbi.png"
@@ -35,7 +35,7 @@ const PRODUCTS = [
   {
     id: "japanese-curry",
     name: "Japanese Curry Bento",
-    description: "Japanese inspired easy to eat dish. Japanese curry chicken with potato and carrot. Served with tamagoyaki and mayo tunacorn",
+    description: "Japanese inspired easy to eat dish. Japanese curry chicken with pumpkin and carrot. Served with tamagoyaki and mayo tunacorn",
     reheat: "Steam or Microwave",
     price: 18.80,
     image: "images/japanese.png"
@@ -45,7 +45,7 @@ const PRODUCTS = [
     id: "paprika-chicken",
     name: "Paprikash Pasta with Chicken",
     description: "Hungarian inspired Paprikash cream penne pasta served with steamed chicken for protein.",
-    reheat: "Steam or Microwave",
+    reheat: "Steam recommended. Microwave for convenience",
     price: 22,
     image: "images/paprika.png"
   },
@@ -71,7 +71,7 @@ const PRODUCTS = [
   {
     id: "variety-box",
     name: "Variety Party Bento",
-    description: "Feeling bored? Then try our variety party box. A platter of tomato rice, chicken potato salad, mee goreng basah, roast chicken with mushroom sauce.",
+    description: "Feeling bored? Then try our variety party bento. A platter of tomato rice, chicken potato salad, mee goreng basah, roast chicken with mushroom sauce.",
     reheat: "Microwave and air fry/oven recommended",
     price: 20,
     image: "images/kimchi-chicken.png"
@@ -89,8 +89,8 @@ const PRODUCTS = [
   {
     id: "taco-beef",
     name: "Taco Beef Tomato Rice",
-    description: "Mexican inspired beef served with Indian style tomato rice. Only order if you love tomatoes",
-    reheat: "Microwave Box A and airfry Box B contents",
+    description: "Mexican inspired beef dish served with Indian style tomato rice with cheese toppings. Only order if you love tomatoes",
+    reheat: "Microwave or Oven",
     price: 20,
     image: "images/kimchi-chicken.png"
   },

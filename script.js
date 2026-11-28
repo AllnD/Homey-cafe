@@ -97,8 +97,8 @@ const PRODUCTS = [
 
   {
     id: "curry-Tomato",
-    name: "Curry Tomato rice",
-    description: "Indian style tomato basmati rice served with malaysian curry and stir fry vegetables. Boil an egg or two to enjoy the meal.",
+    name: "Tomato rice with Fish Curry",
+    description: "Indian style tomato basmati rice served with fish curry and stir fry vegetables. Boil an egg or two to enjoy with the meal.",
     reheat: "Steam recommended. Microwave for convenience",
     price: 18.8,
     image: "images/teriyaki.png"
